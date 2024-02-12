@@ -2,13 +2,13 @@
 
 ## Neden?
 
-[Frontend Masters](https://frontendmasters.com)'tan aldığım kurslarda tuttuğum notlarımı burada toplamaya karar verdim. Başkaları da faydalanabilir diye düşündüm. Sonrasında belki daha detaylı blog yazılarına dönüştürebilirim.
-
-Eksik olduğunu düşündüğünüz yerleri issue açarak belirtebilirsiniz.
+[Frontend Masters](https://frontendmasters.com)'tan aldığım kurslarda tuttuğum notlarımı burada toplamaya karar verdim. Başkaları da faydalanabilir diye düşündüm. Sonrasında belki daha detaylı blog yazılarına dönüştürebilirim. Devam edeceğim kurslarla burayı daha da zenginleştirmeyi planlıyorum.
 
 ## Kapsam
 
-Halihazırda junior seviyesinde bir yazılımcı olmadığım için çok temel konuları içermeyecek. Bu notlar daha çok daha derin konulara değinecek. Bu yüzden yazılıma yeni başladıysanız bu notlar size uygun olmayabilir.
+Halihazırda başlangıç seviyesinde bir yazılımcı olmadığım için bu notlar temel konulardan ziyade bu konuların derin kısımlarına değinecek. Bu yüzden yazılıma yeni başladıysanız size pek uygun olmayabilir. Bu notlarda amaç daha çok Javascript'in nasıl çalıştığını anlamak.
+
+Notları videolar ile beraber götürdüğümden dolayı notlardaki ektsiklerin farkında olmayabilirim. Bu yüzden eksik olduğunu düşündüğünüz yerleri issue açarak belirtebilirsiniz.
 
 ## İçerik
 
