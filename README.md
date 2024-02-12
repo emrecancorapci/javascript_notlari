@@ -13,7 +13,7 @@ Halihazırda junior seviyesinde bir yazılımcı olmadığım için çok temel k
 ## İçerik
 
 - [Tipler](./1_TYPES.md)
-- [Coercion](./2_COERCION.md) (Yazım aşamasında)
+- [Coercion](./2_COERCION.md)
 - [Equality](./3_EQUALITY.md) (Henüz yazılmadı)
 - [Static Typing](./4_STATIC_TYPING.md) (Henüz yazılmadı)
 - [Scope](./5_SCOPE.md) (Henüz yazılmadı)
