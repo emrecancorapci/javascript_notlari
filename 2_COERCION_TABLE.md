@@ -1,4 +1,4 @@
-# Coercion (Tür Dönüşümü) Tablosu
+# Coercion Tablosu
 
 ## String: `ToString(value)` : `ToPrimitive(value, String)`
 

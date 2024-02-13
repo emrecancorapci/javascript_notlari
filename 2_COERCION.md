@@ -2,19 +2,19 @@
 
 Coercion, bir tipten diğerine dönüşüm yapma işlemidir. Javascript'te bu işlem otomatik olarak yapıldığından dolayı bazen beklenmedik sonuçlar doğurabilir.
 
-## 2.1 Implicit ve Explicit Coercion (Kapalı ve Açık Dönüşüm)
+## 2.1 Implicit ve Explicit Coercion
 
-### Implicit coercion
+### Implicit Coercion
 
 Javascript'in otomatik olarak yaptığı dönüşüm işlemidir. Örneğin `1 + "2"` işleminde `1` sayısal bir değerken `"2"` string bir değerdir. Javascript bu durumu otomatik olarak `1 + Number("2")`'ye çevirir.
 
-### Explicit coercion
+### Explicit Coercion
 
 Kullanıcının bilerek yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işlemi kullanıcının bilerek string bir değeri sayıya çevirmesidir.
 
 - İki tarafta farklı tipte değerler varsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit coercion işlemi gerçekleşir. Fakat `===` operatöründe bu durum gerçekleşmez. Dönüşümlerde sayıya dönüştürme işlemi önceliklidir. Eğer bir tarafta string bir tarafta sayı varsa string sayıya dönüştürülür.
 
-## 2.2 Abstract Operations (Soyut İşlemler)
+## 2.2 Abstract Operations
 
 Javascript'te bazı işlemler soyut olarak tanımlanmıştır. Bu işlemler `ToPrimitive`, `ToBoolean`, `ToNumber`, `ToString`, `ToObject` ve `ToPropertyKey`'dir.
 
@@ -24,21 +24,21 @@ Bir değeri primitive bir değere dönüştürmek için kullanılır. `ToPrimiti
 
 #### Hint: `number`
 
-İlk olarak `valueOf` metodunu çağırır. Eğer primitive bir değer dönerse sonucu verir. Primitive değer dönmezse `toString` metodunu çağırır. Eğer primitive değer dönerse sonucu verir.
+İlk olarak `valueOf` metodunu çağırır. Eğer primitive bir değer dönerse sonucu verir. Primitive değer dönmezse `toString` metodunu çağırır. Eğer primitive değer dönerse sonucu sayıya dönüştürür.
 
 #### Hint: `string`
 
-İlk olarak `toString` metodunu çağırır. Eğer primitive bir değer dönerse sonucu verir. Primitive değer dönmezse `valueOf` metodunu çağırır. Eğer primitive değer dönerse sonucu verir.
+İlk olarak `toString` metodunu çağırır. Eğer primitive bir değer dönerse sonucu verir. Primitive değer dönmezse `valueOf` metodunu çağırır. Eğer primitive değer dönerse sonucu stringe dönüştürür.
 
 ### Dönüşüm Tablosu
 
 Dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md).
 
-- `null` ve `undefined` tipleri sayıya dönüştürülürken ilk önce string'e çevrileceklerinden dolayı boş string'e (`""`) daha sonra da `0`'a dönüşür.
+> `null` ve `undefined` tipleri sayıya dönüştürülürken ilk önce `toString` metodu kullanılacağından dolayı boş string'e (`""`) dönüşür. Boş string sayıya dönüştürülerek değer `0` olur.
 
 ## 2.3 Boxing
 
-Javascript'te her şey obje gibi davranır fakat öyle değildir. İlkel tipler de tıpkı objeler gibi property ve fonksiyonlara sahiptir Fakat bu onları obje yapmaz. Bu durum boxing olarak adlandırılır.
+İlkel tipler de tıpkı `object` tipi gibi property ve fonksiyonlara sahiptir Fakat `object` gibi davranıyor olmaları onları öyle yapmaz. İlkel tiplerin de bu gibi özelliklere sahip olması boxing olarak adlandırılır.
 
 ## 2.4 İstisnalar
 
