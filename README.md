@@ -14,7 +14,7 @@ Notları videolar ile beraber götürdüğümden dolayı notlardaki ektsiklerin 
 
 - [Tipler](./1_TYPES.md)
 - [Coercion](./2_COERCION.md)
-- [Equality](./3_EQUALITY.md) (Henüz yazılmadı)
+- [Equality](./3_EQUALITY.md) (Yazım aşamasında)
 - [Static Typing](./4_STATIC_TYPING.md) (Henüz yazılmadı)
 - [Scope](./5_SCOPE.md) (Henüz yazılmadı)
 - [Closure](./6_CLOSURE.md) (Henüz yazılmadı)
