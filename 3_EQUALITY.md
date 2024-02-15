@@ -4,7 +4,7 @@ Genel kanının aksine `===` operatörü `==` operatörünün eksikliklerini gid
 
 `==` operatörü ve `===` operatörü arasındaki tek fark `==` operatörünün implicit coercion işlemi yapmasıdır. Bu karşılaştırma yapılırken her iki tarafın da aynı tipte olduğu görülür ise operatör `===` gibi davranır. Bu yüzden her iki tarafın aynı tipe ait olduğu biliniyorsa -*ki farklı tipleri karşılaştırırken istisnaları dikkate almak gerekli*- `==` operatörü kullanılabilir.
 
-Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operatörü kullanmak daha güvenli bir seçenektir. Fakat bu seçeneğin tercih edilmesi, tercih nedeninin absürtlüğünü de göz önüne serer. Karşılaştırılan değerlerin tiplerinin bilinmemesi, *tehlikeli* bir karşılaştırmadan çok daha büyük bir sorundur.
+Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operatörü kullanmak daha güvenli bir seçenektir. Fakat bu seçeneğin tercih edilmesi, tercih nedeninin absürtlüğünü de göz önüne serer. Karşılaştırılan değerlerin tiplerinin bilinmiyor olması, *tehlikeli* bir karşılaştırmadan çok daha büyük bir sorundur. Bir yazılım geliştirici yazdığı koddaki değerlerin tiplerini bilmiyorsa kodu da tam anlamıyla anlamıyor demektir.
 
 ## 3.1 Abstract Equality Comparison (==)
 

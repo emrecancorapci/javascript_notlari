@@ -14,12 +14,11 @@ Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklan
 
 - [Tipler](./1_TYPES.md)
 - [Coercion](./2_COERCION.md)
-- [Equality](./3_EQUALITY.md) (Yazım aşamasında)
-- [Static Typing](./4_STATIC_TYPING.md) (Henüz yazılmadı)
-- [Scope](./5_SCOPE.md) (Henüz yazılmadı)
-- [Closure](./6_CLOSURE.md) (Henüz yazılmadı)
-- [Objects](./7_OBJECTS.md) (Henüz yazılmadı)
-- [Prototypes](./8_PROTOTYPES.md) (Henüz yazılmadı)
+- [Equality](./3_EQUALITY.md)
+- [Scope](./4_SCOPE.md) (Henüz yazılmadı)
+- [Closure](./5_CLOSURE.md) (Henüz yazılmadı)
+- [Objects](./6_OBJECTS.md) (Henüz yazılmadı)
+- [Prototypes](./7_PROTOTYPES.md) (Henüz yazılmadı)
 
 ## Kurslar
 
