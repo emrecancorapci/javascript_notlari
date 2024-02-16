@@ -50,3 +50,5 @@ Tiplerin detaylı dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md)
 
 - Javascript'in implicit coercion işlemleri kodun okunabilirliğini arttırır. Fakat `number` olması gereken parametrenin `string` dönmesi gibi bazı beklenmedik sonuçlar doğurabilir. Bu gibi durumlarda tiplerin dönüşümlerini bilmek önem kazanır.
 - Coercion işlemlerinde gerekli olmayan bir dönüşümün implicit veya explicit olması gerektiğinin tercihini yaparken yazılımcının kendisine şu soruyu sorması gerekir: "***Bu dönüşümü açıkça göstermek okuyucuya yardımcı mı olur yoksa dikkatini mi dağıtır?***"
+
+### [Sonraki Sayfa](./3_EQUALITY.md)

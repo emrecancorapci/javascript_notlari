@@ -51,3 +51,5 @@ Javascript'te IEEE 754 standardında uygun olarak negative zero ve positive zero
 - `typeof` operatörü değişkenin tipini `string` olarak döndürür.
 - `null` tipi bir `object` tipi değerdir. ES1'de yapılan tanımlama yüzünden bu şekilde kalmıştır. Bu davranış bir bug olarak düşünülebilir.
 - `Array` tipi `typeof` operatörü ile kontrol edildiğinde `Object` döndürecektir. Dolayısıyla bir değerin `Array` olup olmadığı `Array.isArray(value)` fonksiyonu ile kontrol edilir.
+
+### [Sonraki Sayfa](./2_COERCION.md)

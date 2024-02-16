@@ -26,3 +26,5 @@ Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operat
 - `x == true` ve `x == false` gibi karşılaştırmalar
 
 > `x`'in `true` veya `false` olup olmadığını kontrol etmek için `x`'in tipinin bilinmesi gerekmektedir. Bu durumda `===` operatörü kullanılmalıdır. Alternatif olarak `ToBoolean()` fonksiyonu da kullanılabilir.
+
+### [Sonraki Sayfa](./4_SCOPE.md)
