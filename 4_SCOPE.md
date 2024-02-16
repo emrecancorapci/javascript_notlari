@@ -4,7 +4,7 @@
 
 Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğini belirler. Scope'lar fonksiyonlar ve bloklar aracılığıyla oluşturulur. Bu scope'lar `lexical scope` olarak adlandırılır.
 
-### 4.1.1 Lexical Scope
+### Lexical Scope
 
 - `Lexical` terimi basitçe `kaynak kodu` veya başka bir deyişle `bir programın metniyle ilgili` anlamına gelir. `Lexical scope`'un bir diğer adı ise `static scope`'dur. Bu isim, bir değişkenin hangi scope'da olduğunun programın yazılım aşamasında belirlendiğini ifade eder.
 
@@ -31,10 +31,12 @@ f2();
 
 - Yukarıdaki örnekte `f1` fonksiyonu `f2` fonksiyonunun içerisinde çağrıldığı halde `a` değişkeninin değeri `global` olacaktır. Çünkü `f1` fonksiyonu `f2` fonksiyonunun tanımı içerisinde değil, global scope'da tanımlıdır. Fonksiyon öncelikle `a` değişkenini kendi scope'unda arayacak, bulamazsa `lexical environment`'a bakacaktır.
 
-## 4.1 Compiler Theory
+## 4.2 Compiler Theory
 
-- Compiler, Javascript kodunu `JavaScript Virtual Machine`'in anlayacağı dile çevirirken `lexical scope`'un da belirlenmesi gerçekleşir. Bu işlemi yapılırken kullandığı bir diğer terim ise `scope resolution`'dır. Bu terim, bir değişkenin hangi scope'da olduğunun belirlenmesi anlamına gelir.
-- Bu Compile işleminden sorumlu iki terim bulunur: `Engine` ve `Scope Manager`. `Engine`, kodun çalıştırılmasından sorumlu olan kısımdır. `Scope Manager` ise `lexical scope`'un belirlenmesinden sorumludur.
+- `Compiler` terimi, bir programın kaynak kodunu `machine code`'a çeviren bir yazılımı ifade eder. `Machine code` ise bir bilgisayarın anlayabileceği dilde yazılmış kodları ifade eder.
+- Javascript kodu `Compile Time` ve `Run Time` diye adlandırılan iki aşamada çalıştırılır.. `Compile Time`'da kodun `lexical scope`'u belirlenirken `Run Time`'da kodun çalıştırılması gerçekleşir.
+- Compiler, Javascript kodu `JavaScript Virtual Machine`'in anlayacağı dile çevrilirken diğer yandan da `lexical scope`'un da belirlenmesi gerçekleşir. Bu işlemi yapılırken uygulanan bir diğer terim ise `scope resolution`'dır. Bu terim, bir değişkenin hangi scope'da olduğunun belirlenmesi anlamına gelir.
+- Bu Compile işleminden sorumlu olan `Engine` ve `Scope Manager` isimli iki varlık bulunur. `Engine`, kodun çalıştırılmasından sorumlu olan kısımdır. `Scope Manager` ise `lexical scope`'un belirlenmesinden sorumludur.
 
 ### Scope Manager
 
@@ -62,3 +64,50 @@ soy(); // elma soyuldu!
   4. `soy` fonksiyonunun `lexical environment`'ı oluşturulur.
   5. `sebze` değişkeni `soy` fonksiyonunun `lexical environment`'ına eklenir.
   6. `meyve` değişkeni `console.log(meyve, 'soyuldu!')` fonksiyonunda referans edildiğinden dolayı `soy` fonksiyonunun `lexical environment`'ına eklenir.
+- Tüm bu işlemler `Compile Time`'da gerçekleşir.
+
+### The Javascript Engine
+
+- `Engine`, kodun çalıştırılmasından sorumlu olan kısımdır. `Engine`'un görevi `lexical scope`'u kullanarak değişkenlere erişmek ve bu değişkenlerin değerlerini almak veya değiştirmektir.
+
+```javascript
+var meyve = 'elma';
+console.log(meyve);
+
+function muzSoy() {
+   var meyve = 'muz';
+   console.log('Muz soyuldu!');
+}
+
+muzSoy();
+```
+
+- Yukarıdaki kodda ilk satırda `meyve` değişkeni `l-value(source)`, `elma` değeri ise `r-value(target)` olarak adlandırılır.
+- `meyve`'nin `lexical environment`'ta olup olmadığı Engine tarafından kontrol edilir. Eğer mevcutsa `elma` değeri, `meyve` değişkenine atanır.
+- İkinci satırda ise r-value olan `meyve` değişkeni l-value olan `console.log()` fonksiyonuna referans edildiği için `lexical environment`'a bakılır. `meyve` değişkeni bulunur ve `elma` değeri yazdırılır.
+- L-value olan `muzSoy` fonksiyonu çalıştırıldığında `lexical environment`'a bakılır ve `muzSoy` fonksiyonunun `lexical environment`'ı bulunur. Environment'taki kod çalıştırılır ve `Muz soyuldu!` yazdırılır.
+
+> Çağrılan fonksiyonlar neden l-value olur sorusuna verilebilecek en iyi cevap, kendisinin bir `target reference` olmamasıdır. Eğer bir `r-value` değilse, bir `l-value` olmalıdır çünkü elimizde iki seçenek vardır.
+
+## 4.3 Nested Scope
+
+- `Nested scope`, bir scope'un başka bir scope'un içerisinde bulunması durumunu ifade eder. Bu durumda içteki scope, dıştaki scope'un değişkenlerine erişebilir.
+
+```javascript
+var eylem = 'kesildi!';
+
+function elmaSoy() {
+   var eylem = 'soyuldu!';
+
+   function soy(meyve) {
+      console.log(meyve, eylem);
+   }
+
+   soy('elma');
+}
+
+elmaSoy(); // elma soyuldu!
+soy('muz'); // ReferenceError: soy is not defined
+```
+
+- Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu yüzden `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına yani `eylem` değişkenine erişebilir. Ancak `soy` fonksiyonu `elmaSoy` fonksiyonunun dışında tanımlı olmadığı için bu fonksiyona global scope'da erişilemez. Bu yüzden `soy('muz')` fonksiyonu global scope'da tanımlı olmadığı için fonksiyon çalıştırıldığında `ReferenceError` hatası verir.
