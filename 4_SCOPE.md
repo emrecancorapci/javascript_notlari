@@ -188,3 +188,25 @@ function meyveSoy() {
    console.log(meyve, 'soyuldu!');
 }
 ```
+
+## 4.7. Closure
+
+- Bir fonksiyonun mevcut scope'u dışındaki bir değişkene erişebilmesi durumuna `closure` denir. Bu durumda fonksiyon, kendi scope'u dışındaki bir değişkene erişebilir ve bu değişkeni kullanabilir.
+
+```javascript
+function elmaSoy() {
+   var eylem = 'soyuldu!';
+
+   function soy(meyve) {
+      console.log(meyve, eylem);
+   }
+
+   return soy;
+}
+
+var muzSoy = elmaSoy();
+muzSoy('muz'); // muz soyuldu!
+```
+
+- Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu durumda closure var olduğu için `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına erişebilir. Bu durumda `soy` fonksiyonu `eylem` değişkenine erişebilir ve bu değişkeni kullanabilir. Bu durumda `soy` fonksiyonu `closure`'a sahiptir.
+- Closure fonksiyonları `once` ve `memoize` gibi helper fonksiyonlar, `iterator` ve `generator` fonksiyonları, `Module Pattern` ve `Revealing Module Pattern` design pattern'ları, `Callback` ve `Promise` async operasyonları gibi birçok alanda kullanılır.
