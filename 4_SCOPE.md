@@ -1,10 +1,8 @@
 # 4. Scope
 
-## 4.1 Introduction
-
 Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğini belirler. Scope'lar fonksiyonlar ve bloklar aracılığıyla oluşturulur. Bu scope'lar `lexical scope` olarak adlandırılır.
 
-### Lexical Scope
+## 4.1 Lexical Scope
 
 - `Lexical` terimi basitçe `kaynak kodu` veya başka bir deyişle `bir programın metniyle ilgili` anlamına gelir. `Lexical scope`'un bir diğer adı ise `static scope`'dur. Bu isim, bir değişkenin hangi scope'da olduğunun programın yazılım aşamasında belirlendiğini ifade eder.
 
@@ -89,7 +87,7 @@ muzSoy();
 
 > Çağrılan fonksiyonlar neden l-value olur sorusuna verilebilecek en iyi cevap, kendisinin bir `target reference` olmamasıdır. Eğer bir `r-value` değilse, bir `l-value` olmalıdır çünkü elimizde iki seçenek vardır.
 
-## 4.3 Nested Scope
+## 4.3 Nested Scopes
 
 - `Nested scope`, bir scope'un başka bir scope'un içerisinde bulunması durumunu ifade eder. Bu durumda içteki scope, dıştaki scope'un değişkenlerine erişebilir.
 
@@ -111,3 +109,68 @@ soy('muz'); // ReferenceError: soy is not defined
 ```
 
 - Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu yüzden `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına yani `eylem` değişkenine erişebilir. Ancak `soy` fonksiyonu `elmaSoy` fonksiyonunun dışında tanımlı olmadığı için bu fonksiyona global scope'da erişilemez. Bu yüzden `soy('muz')` fonksiyonu global scope'da tanımlı olmadığı için fonksiyon çalıştırıldığında `ReferenceError` hatası verir.
+
+## 4.4 IIFE Pattern
+
+- `IIFE` (Immediately Invoked Function Expression) pattern, bir fonksiyonun tanımlandığı yerde hemen çağrılmasını sağlayan bir pattern'dir. Bu pattern, bir fonksiyonun `lexical scope`'unu kullanarak global scope'dan izole edilmesini sağlar.
+- İçerdeki fonksiyon bir `function declaration` değil, `function expression` olarak nitelendirilir.
+
+> `function declaration`, bir fonksiyonun adını ve gövdesini belirterek tanımlanmasını ifade eder. `function expression` ise bir fonksiyonun bir değişkene atanarak tanımlanmasını ifade eder.
+
+```javascript
+( function elmaSoy(meyve) {
+   console.log(meyve, 'soyuldu!');
+} )('elma');
+```
+
+- Bu pattern kullanılarak değişken şartlı atamaları tek seferde yapılabilir.
+
+```javascript
+var meyve = ( function() {
+   try {
+      return fetchMeyve(1);
+   } catch (error) {
+      return 'elma';
+   }
+} )();
+```
+
+## 4.5 var vs let vs const
+
+- `var` anahtar kelimesi ile tanımlanan değişkenler `lexical scope`'a sahiptir. `let` ve `const` anahtar kelimeleri ile tanımlanan değişkenler ise `block scope`'a sahiptir.
+
+> `block scope`, bir blok içerisinde tanımlanan değişkenlerin sadece o blok içerisinde erişilebilir olmasını ifade eder.
+
+```javascript
+function yiyecek() {
+   { // a block
+      var meyve = 'elma';
+      let sebze = 'domates';
+      const protein = 'tavuk';
+
+      console.log(meyve); // elma
+      console.log(sebze); // domates
+      console.log(protein); // tavuk
+
+      meyve = 'muz';
+      sebze = 'havuç';
+      protein = 'kırmızı et'; // TypeError: Assignment to constant variable.
+   }
+
+   console.log(meyve); // muz
+   console.log(sebze); // ReferenceError: sebze is not defined
+   console.log(protein); // ReferenceError: protein is not defined
+}
+```
+
+- `const` anahtar kelimesi ile tanımlanan değişkenlerin değeri bir kez atanır ve daha sonra değiştirilemez. Fakat `const` ile tanımlanan bir array veya object'in içeriği değiştirilebilir.
+
+```javascript
+const peynir = ['kaşar', 'beyaz', 'tulum'];
+console.log(peynir); // ['kaşar', 'beyaz', 'tulum']
+
+peynir = ['cheddar', 'gouda', 'roquefort']; // TypeError: Assignment to constant variable.
+
+peynir[0] = 'cheddar';
+console.log(peynir); // ['cheddar', 'beyaz', 'tulum']
+```
