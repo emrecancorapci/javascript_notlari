@@ -12,13 +12,12 @@ Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklan
 
 ## İçerik
 
-- [Tipler](./1_TYPES.md)
+- [Types](./1_TYPES.md)
 - [Coercion](./2_COERCION.md)
 - [Equality](./3_EQUALITY.md)
 - [Scope](./4_SCOPE.md)
-- [Closure](./5_CLOSURE.md) (Henüz yazılmadı)
-- [Objects](./6_OBJECTS.md) (Henüz yazılmadı)
-- [Prototypes](./7_PROTOTYPES.md) (Henüz yazılmadı)
+- [Objects](./5_OBJECTS.md) (Henüz yazılmadı)
+- [Prototypes](./6_PROTOTYPES.md) (Henüz yazılmadı)
 
 ## Kurslar
 

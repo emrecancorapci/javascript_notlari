@@ -1,4 +1,4 @@
-# 1. Tipler
+# 1. Types
 
 - C++, C# ve Java gibi dillerde değişkenlerin tipleri vardır. Fakat javascript'te **değerlerin tipleri** vardır.
 - Primitive (İlkel - Temel) Types: `undefined`, `string`, `number`, `boolean`, `symbol`, `null`, `bigint`
