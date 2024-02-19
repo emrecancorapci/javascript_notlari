@@ -1,10 +1,10 @@
 # 3. Equality
 
-Genel kanının aksine `===` operatörü `==` operatörünün eksikliklerini gidermez. Nasıl çalıştıkları bilindiği sürece iki operatör de aynı projede hatta aynı fonksiyonda kullanılabilir.
+Genel kanının aksine `===` operatörü `==` operatörünün eksikliklerini gidermez. Nasıl çalıştıkları bilindiği sürece iki operatör de aynı projede hatta aynı fonksiyonda bile kullanılabilir.
 
-`==` operatörü ve `===` operatörü arasındaki tek fark `==` operatörünün implicit coercion işlemi yapmasıdır. Bu karşılaştırma yapılırken her iki tarafın da aynı tipte olduğu görülür ise operatör `===` gibi davranır. Bu yüzden her iki tarafın aynı tipe ait olduğu biliniyorsa -*ki farklı tipleri karşılaştırırken istisnaları dikkate almak gerekli*- `==` operatörü kullanılabilir.
+`==` operatörü ve `===` operatörü arasındaki tek fark `==` operatörünün [implicit coercion](/2_COERCION.md/#21-implicit-ve-explicit-coercion) işlemi yapmasıdır. Bu karşılaştırma yapılırken her iki tarafın da aynı tipte olduğu görülür ise operatör `===` gibi davranır. Bu yüzden her iki tarafın aynı tipe ait olduğu biliniyorsa -*ki farklı tipleri karşılaştırırken istisnaları dikkate almak gerekli*- `==` operatörü kullanılabilir.
 
-Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operatörü kullanmak daha güvenli bir seçenektir. Fakat bu seçeneğin tercih edilmesi, tercih nedeninin absürtlüğünü de göz önüne serer. Karşılaştırılan değerlerin tiplerinin bilinmiyor olması, *tehlikeli* bir karşılaştırmadan çok daha büyük bir sorundur. Bir yazılım geliştirici yazdığı koddaki değerlerin tiplerini bilmiyorsa kodu da tam anlamıyla anlamıyor demektir.
+Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operatörü kullanmak daha güvenli bir seçenektir. Fakat bu seçeneğin tercih edilmesi, tercih nedeninin absürtlüğünü de göz önüne serer. Karşılaştırılan değerlerin tiplerinin bilinmiyor olması, *tehlikeli* bir karşılaştırmadan çok daha büyük bir sorundur. *Bir yazılım geliştirici yazdığı koddaki değerlerin tiplerini bilmiyorsa kodu da tam anlamıyla anlamıyor demektir.*
 
 ## 3.1 Abstract Equality Comparison (==)
 
@@ -17,11 +17,11 @@ Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operat
 
 - `0`, `""` ve `[]` gibi değerlerin karşılaştırılması
 
-> *Implicit coercion işlemi yapılacağından dolayı beklenmedik sonuçlar doğurabilir*.
+> *Implicit coercion* işlemi yapılacağından dolayı beklenmedik sonuçlar doğurabilir.
 
-- non-primitive tiplerin karşılaştırılması
+- *non-primitive* tiplerin karşılaştırılması
 
-> Non-primitive tiplerde karşılaştırma işlemleri referansları aracılığıyla yapılır. İki farklı obje değerler bakımından aynı olsa da farklı referanslara sahip olduklarından karşılaştırma operatörü iki objeyi farklı görür.  Bu gibi işlemlerde sağlıklı bir karşılaştırma yapılabilmesi için objelerde özgün değer bulundurulmalı ve bu değerler karşılaştırılmalıdır.
+> *Non-primitive* tiplerde karşılaştırma işlemleri **referansları** aracılığıyla yapılır. İki farklı obje değerler bakımından aynı olsa da farklı referanslara sahip olduklarından dolayı karşılaştırma operatörü iki objeyi farklı görecektir. Bu gibi işlemlerde sağlıklı bir karşılaştırma yapılabilmesi için objeler özgün değerlere sahip olmalı ve bu değerler karşılaştırılmalıdır.
 
 - `x == true` ve `x == false` gibi karşılaştırmalar
 

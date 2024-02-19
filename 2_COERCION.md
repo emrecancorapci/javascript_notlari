@@ -1,6 +1,6 @@
 # 2. Coercion
 
-Coercion, bir tipten diğerine dönüşüm yapma işlemidir. Bu işlem bazı durumlarda otomatik olarak yapıldığından dolayı beklenmedik sonuçlar doğurabilir.
+**Coercion**, bir tipten diğerine dönüşüm yapma işlemidir. Bu işlem bazı durumlarda otomatik olarak yapıldığından dolayı beklenmedik sonuçlar doğurabilir.
 
 ## 2.1 Implicit ve Explicit Coercion
 
@@ -12,7 +12,7 @@ Otomatik olarak yapılan dönüşüm işlemidir. Örneğin `1 + "2"` işleminde 
 
 Kullanıcının yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işlemi kullanıcının  string bir değeri sayıya çevirmesidir.
 
-- İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit coercion işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda coercion işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
+- İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit *coercion* işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda *coercion* işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
 
 ## 2.2 Abstract Operations
 
@@ -38,17 +38,17 @@ Tiplerin detaylı dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md)
 
 ## 2.3 Boxing
 
-İlkel tipler de tıpkı `object` tipi gibi property ve fonksiyonlara sahiptir Fakat obje gibi davranıyor olmaları onları öyle yapmaz. İlkel tiplerin de objeler gibi özelliklere sahip olması **boxing** olarak adlandırılır.
+*Primitive* tipler da tıpkı `object` tipi gibi property ve fonksiyonlara sahiptir Fakat obje gibi davranıyor olmaları onları öyle yapmaz. *Primitive* tiplerin de objeler gibi özelliklere sahip olması **boxing** olarak adlandırılır.
 
 ## 2.4 İstisnalar
 
-- `+` operatörü `string`' değerlerini birleştirmek için de kullanılabildiğinden dolayı `"16" + 1` işlemi `161` sonucunu verebilir. Burada dikkat edilmesi gereken `""` sayıya dönüştürüldüğünde `0` döndürür.
-- `-` operatörü sadece sayılar için kullanıldığından dolayı herhangi bir string kullanıldığında sayıya dönüştürülecektir.
-- Aynı yerde birden fazla karşılaştırma operatörü kullanıldığında karşılaştırma soldan sağa doğru gerçekleşir. Örneğin `1 < 2 < 3` işleminde ilk olarak `1 < 2` işlemi `true` döner. Dönen `true` değeri sayıya dönüştürüldüğünde `1 < 3` işlemi elde edilir ve işlemin sonucunda `true` elde edilir.
+- `+` operatörü **string** değerleri birleştirmek için de kullanıldığından dolayı `"16" + 1` işlemi `161` sonucunu verebilir. Burada dikkat edilmesi gereken boş *string* `""` sayıya dönüştürüldüğünde `0` döndürür.
+- `-` operatörü sadece sayılar için kullanıldığından dolayı herhangi bir *string* kullanıldığında sayıya dönüştürülecektir.
+- Aynı yerde birden fazla *karşılaştırma operatörü* kullanıldığında kontrol edilecek karşılaştırma soldan sağa doğru gerçekleşir. Örneğin `1 < 2 < 3` işleminde ilk olarak `1 < 2` işlemi `true` döner. Dönen `true` değeri sayıya dönüştürüldüğünde `1 < 3` işlemi elde edilir ve işlemin sonucunda `true` elde edilir.
 
 ## 2.5 Notlar
 
-- Javascript'in implicit coercion işlemleri kodun okunabilirliğini arttırır. Fakat `number` olması gereken parametrenin `string` dönmesi gibi bazı beklenmedik sonuçlar doğurabilir. Bu gibi durumlarda tiplerin dönüşümlerini bilmek önem kazanır.
-- Coercion işlemlerinde gerekli olmayan bir dönüşümün implicit veya explicit olması gerektiğinin tercihini yaparken yazılımcının kendisine şu soruyu sorması gerekir: "***Bu dönüşümü açıkça göstermek okuyucuya yardımcı mı olur yoksa dikkatini mi dağıtır?***"
+- *Implicit coercion* işlemleri kodun okunabilirliğini arttırır. Fakat *number* olması gereken parametrenin *string* dönmesi gibi bazı beklenmedik sonuçlar doğurabilir. Bu gibi durumlarda tiplerin dönüşümlerini bilmek önem kazanır.
+- *Coercion* işlemlerinde gerekli olmayan bir dönüşümün *implicit* veya *explicit* olması gerektiğinin tercihini yaparken yazılımcının kendisine şu soruyu sorması gerekir: "***Bu dönüşümü açıkça göstermek okuyucuya yardımcı mı olur yoksa dikkatini mi dağıtır?***"
 
 ### [Sonraki Sayfa](./3_EQUALITY.md)
