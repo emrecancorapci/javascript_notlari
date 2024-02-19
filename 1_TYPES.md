@@ -4,17 +4,13 @@
 - Primitive (İlkel - Temel) Types: `undefined`, `string`, `number`, `boolean`, `symbol`, `null`, `bigint`
 - Object Types: `object`, `function (callable objects)`, `array`
 
-## 1.1 Hoisting
-
-Javascript'te tanımlamalar en yukarıya çekilir. Bu sayede bir değişkenin tanımlanmadan önce kullanılması durumunda hata alınmaz. Fakat bu durum `let` ve `const` ile tanımlanan değişkenler için geçerli değildir. Bu durumda `Temporal Dead Zone` hatası alınır.
-
-## 1.2 Emptiness
+## 1.1 Emptiness
 
 Javascript'te 3 tip boşluk vardır. Bunlar `uninitialized`, `undefined` ve `undeclared`'dır. Bu boşluklar farklı anlamlara gelmektedir.
 
 ### `Uninitialized` (TDZ) (Temporal Dead Zone)
 
-Hiç initialize(başlatılmamış) edilmemiş değişken. `const` ve `let` ile oluşturulan değişkenler, tanımlanmadan önce kullanılmaya çalışıldığında `Temporal Dead Zone` (TDZ) hatası alınır. Javascript [hoisting](#11-hoisting) yaptığı için değişken oluşturulmuş fakat değişkenin kullanıldığı yerde henüz kendisi initialize edilmemiştir
+Hiç initialize(başlatılmamış) edilmemiş değişken. `const` ve `let` ile oluşturulan değişkenler, tanımlanmadan önce kullanılmaya çalışıldığında `Temporal Dead Zone` (TDZ) hatası alınır. Javascript [hoisting](/4_SCOPE.md/#46-hoisting) yaptığı için değişken oluşturulmuş fakat değişkenin kullanıldığı yerde henüz kendisi initialize edilmemiştir
 
 TDZ hatası verecek kod örneği:
 
@@ -34,14 +30,14 @@ Değişken initialize edilmiş fakat bir değişkene bir değer tanımlanmamış
 
 Değişken hiç tanımlanmamıştır. Bu durumda kod çalıştırıldığında `ReferenceError` hatası alınır. ESLint gibi statik analiz araçları bu durumu kontrol edebilir.
 
-## 1.3 `NaN` (Not a Number)
+## 1.2 `NaN` (Not a Number)
 
 Matematiksel işlem sonucu oluşan hata durumunu belirten `number` tipinde bir değerdir. IEEE 754 standardına göre kendisi de dahil herhangi bir değer ile yapılan bir işlemin sonucu `NaN` dönmektedir.
 
 - `string` değeri `Number(value)` fonksiyonu ile çevrilmeye çalışıldığında `NaN` döner. Bu işlemlerde `Number.isNan(value)` fonksiyonu kullanılmalıdır.
 - `NaN` yerine 0 kullanılamaz.
 
-## 1.4 Negative Zero `-0` ve Positive Zero `0`
+## 1.3 Negative Zero `-0` ve Positive Zero `0`
 
 Javascript'te IEEE 754 standardında uygun olarak negative zero ve positive zero değerleri bulunur. Negative zero Javascript'e daha sonraki versiyonlarda dahil edildiğinden dolayı `0` ve `-0` değerleri `===` operatörü ile karşılaştırıldığında `true` dönecektir. Fakat `Object.is(value)` fonksiyonu sonradan eklendiği ve daha doğru çalıştığı için bu değerleri birbirinden ayrıt edebilir.
 

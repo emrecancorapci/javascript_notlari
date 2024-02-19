@@ -174,3 +174,17 @@ peynir = ['cheddar', 'gouda', 'roquefort']; // TypeError: Assignment to constant
 peynir[0] = 'cheddar';
 console.log(peynir); // ['cheddar', 'beyaz', 'tulum']
 ```
+
+## 4.6 Hoisting
+
+Genel kanının aksine Javascript'te tanımlamalar en yukarıya çekilmez. Öncelikle compile edildiği için tanımlamalar gerçekleştirildikten sonra kod çalıştırılır. `var` ile tanımlanan değişkenler ve fonksiyonlara tanımları yapılmadan önce erişilebildiği halde `let` ve `const` ile tanımlanan değişkenlere erişilemez. Erişilmeye çalışıldığında ise `TDZ (Temporal Dead Zone)` hatası alınır.
+
+```javascript
+var meyve = 'elma';
+
+meyveSoy(): // Elma soyuldu!
+
+function meyveSoy() {
+   console.log(meyve, 'soyuldu!');
+}
+```
