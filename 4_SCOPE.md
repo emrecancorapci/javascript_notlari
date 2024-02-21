@@ -6,7 +6,7 @@ Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğ
 
 - `Lexical` terimi basitçe `kaynak kodu` veya başka bir deyişle `bir programın metniyle ilgili` anlamına gelir. `Lexical scope`'un bir diğer adı ise `static scope`'dur. Bu isim, bir değişkenin hangi scope'da olduğunun programın yazılım aşamasında belirlendiğini ifade eder.
 
-- Bir fonksiyonun içindeki bir değişken önce fonksiyonun `local environment`'ında (yerel ortamında), daha sonra ise `lexical environment`'ında aranır.
+> Bir fonksiyonun içindeki bir değişken önce fonksiyonun `local environment`'ında (yerel ortamında), daha sonra ise `lexical environment`'ında aranır.
 
 - `Lexical environment` bir fonksiyon için o fonksiyonun kaynak kodundaki tanımını kapsayan ortamı ifade eder. Bu ortam fonksiyonun tanımlandığı yerdeki scope'lar ve bu scope'lar içerisindeki değişkenlerin birleşiminden oluşur.
 
@@ -91,22 +91,22 @@ muzSoy();
 
 - `Nested scope`, bir scope'un başka bir scope'un içerisinde bulunması durumunu ifade eder. Bu durumda içteki scope, dıştaki scope'un değişkenlerine erişebilir.
 
-```javascript
-var eylem = 'kesildi!';
+   ```javascript
+   var eylem = 'kesildi!';
 
-function elmaSoy() {
-   var eylem = 'soyuldu!';
+   function elmaSoy() {
+      var eylem = 'soyuldu!';
 
-   function soy(meyve) {
-      console.log(meyve, eylem);
+      function soy(meyve) {
+         console.log(meyve, eylem);
+      }
+
+      soy('elma');
    }
 
-   soy('elma');
-}
-
-elmaSoy(); // elma soyuldu!
-soy('muz'); // ReferenceError: soy is not defined
-```
+   elmaSoy(); // elma soyuldu!
+   soy('muz'); // ReferenceError: soy is not defined
+   ```
 
 - Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu yüzden `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına yani `eylem` değişkenine erişebilir. Ancak `soy` fonksiyonu `elmaSoy` fonksiyonunun dışında tanımlı olmadığı için bu fonksiyona global scope'da erişilemez. Bu yüzden `soy('muz')` fonksiyonu global scope'da tanımlı olmadığı için fonksiyon çalıştırıldığında `ReferenceError` hatası verir.
 
@@ -139,74 +139,75 @@ var meyve = ( function() {
 
 - `var` anahtar kelimesi ile tanımlanan değişkenler `lexical scope`'a sahiptir. `let` ve `const` anahtar kelimeleri ile tanımlanan değişkenler ise `block scope`'a sahiptir.
 
-> `block scope`, bir blok içerisinde tanımlanan değişkenlerin sadece o blok içerisinde erişilebilir olmasını ifade eder.
+   ```javascript
+   function yiyecek() {
+      { // a block
+         var meyve = 'elma';
+         let sebze = 'domates';
+         const protein = 'tavuk';
 
-```javascript
-function yiyecek() {
-   { // a block
-      var meyve = 'elma';
-      let sebze = 'domates';
-      const protein = 'tavuk';
+         console.log(meyve); // elma
+         console.log(sebze); // domates
+         console.log(protein); // tavuk
 
-      console.log(meyve); // elma
-      console.log(sebze); // domates
-      console.log(protein); // tavuk
+         meyve = 'muz';
+         sebze = 'havuç';
+         protein = 'kırmızı et'; // TypeError: Assignment to constant variable.
+      }
 
-      meyve = 'muz';
-      sebze = 'havuç';
-      protein = 'kırmızı et'; // TypeError: Assignment to constant variable.
+      console.log(meyve); // muz
+      console.log(sebze); // ReferenceError: sebze is not defined
+      console.log(protein); // ReferenceError: protein is not defined
    }
+   ```
 
-   console.log(meyve); // muz
-   console.log(sebze); // ReferenceError: sebze is not defined
-   console.log(protein); // ReferenceError: protein is not defined
-}
-```
+> `block scope`, bir blok içerisinde tanımlanan değişkenlerin sadece o blok içerisinde erişilebilir olmasını ifade eder.
 
 - `const` anahtar kelimesi ile tanımlanan değişkenlerin değeri bir kez atanır ve daha sonra değiştirilemez. Fakat `const` ile tanımlanan bir array veya object'in içeriği değiştirilebilir.
 
-```javascript
-const peynir = ['kaşar', 'beyaz', 'tulum'];
-console.log(peynir); // ['kaşar', 'beyaz', 'tulum']
+   ```javascript
+   const peynir = ['kaşar', 'beyaz', 'tulum'];
+   console.log(peynir); // ['kaşar', 'beyaz', 'tulum']
 
-peynir = ['cheddar', 'gouda', 'roquefort']; // TypeError: Assignment to constant variable.
+   peynir = ['cheddar', 'gouda', 'roquefort']; // TypeError: Assignment to constant variable.
 
-peynir[0] = 'cheddar';
-console.log(peynir); // ['cheddar', 'beyaz', 'tulum']
-```
+   peynir[0] = 'cheddar';
+   console.log(peynir); // ['cheddar', 'beyaz', 'tulum']
+   ```
 
 ## 4.6 Hoisting
 
-Genel kanının aksine Javascript'te tanımlamalar en yukarıya çekilmez. Öncelikle compile edildiği için tanımlamalar gerçekleştirildikten sonra kod çalıştırılır. `var` ile tanımlanan değişkenler ve fonksiyonlara tanımları yapılmadan önce erişilebildiği halde `let` ve `const` ile tanımlanan değişkenlere erişilemez. Erişilmeye çalışıldığında ise `TDZ (Temporal Dead Zone)` hatası alınır.
+- Genel kanının aksine Javascript'te tanımlamalar en yukarıya çekilmez. Öncelikle compile edildiği için tanımlamalar gerçekleştirildikten sonra kod çalıştırılır.
+- `var` ile tanımlanan değişkenler ve fonksiyonlara tanımları yapılmadan önce erişilebildiği halde `let` ve `const` ile tanımlanan değişkenlere erişilemez. Erişilmeye çalışıldığında ise `TDZ (Temporal Dead Zone)` hatası alınır.
 
-```javascript
-var meyve = 'elma';
+   ```javascript
+   var meyve = 'elma';
 
-meyveSoy(): // Elma soyuldu!
+   meyveSoy(): // Elma soyuldu!
 
-function meyveSoy() {
-   console.log(meyve, 'soyuldu!');
-}
-```
+   function meyveSoy() {
+      console.log(meyve, 'soyuldu!');
+   }
+   ```
 
 ## 4.7. Closure
 
 - Bir fonksiyonun mevcut scope'u dışındaki bir değişkene erişebilmesi durumuna `closure` denir. Bu durumda fonksiyon, kendi scope'u dışındaki bir değişkene erişebilir ve bu değişkeni kullanabilir.
+- Aşağıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu durumda closure var olduğu için `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına erişebilir. Bu durumda `soy` fonksiyonu `eylem` değişkenine erişebilir ve bu değişkeni kullanabilir. Bu durumda `soy` fonksiyonu `closure`'a sahiptir.
 
-```javascript
-function elmaSoy() {
-   var eylem = 'soyuldu!';
+   ```javascript
+   function elmaSoy() {
+      var eylem = 'soyuldu!';
 
-   function soy(meyve) {
-      console.log(meyve, eylem);
+      function soy(meyve) {
+         console.log(meyve, eylem);
+      }
+
+      return soy;
    }
 
-   return soy;
-}
+   var muzSoy = elmaSoy();
+   muzSoy('muz'); // muz soyuldu!
+   ```
 
-var muzSoy = elmaSoy();
-muzSoy('muz'); // muz soyuldu!
-```
-
-- Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu durumda closure var olduğu için `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına erişebilir. Bu durumda `soy` fonksiyonu `eylem` değişkenine erişebilir ve bu değişkeni kullanabilir. Bu durumda `soy` fonksiyonu `closure`'a sahiptir.
-- Closure fonksiyonları `once` ve `memoize` gibi helper fonksiyonlar, `iterator` ve `generator` fonksiyonları, `Module Pattern` ve `Revealing Module Pattern` design pattern'ları, `Callback` ve `Promise` async operasyonları gibi birçok alanda kullanılır.
+> Closure fonksiyonları `once` ve `memoize` gibi helper fonksiyonlar, `iterator` ve `generator` fonksiyonları, `Module Pattern` ve `Revealing Module Pattern` design pattern'ları, `Callback` ve `Promise` async operasyonları gibi birçok alanda kullanılır.
