@@ -16,8 +16,8 @@ Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklan
 - [Coercion](./2_COERCION.md)
 - [Equality](./3_EQUALITY.md)
 - [Scope](./4_SCOPE.md)
-- [Objects](./5_OBJECTS.md) (Henüz yazılmadı)
-- [Prototypes](./6_PROTOTYPES.md) (Henüz yazılmadı)
+- [Objects](./5_OBJECTS.md)
+- [Prototypes](./6_PROTOTYPES.md) (Yazım aşamasında)
 
 ## Kurslar
 
