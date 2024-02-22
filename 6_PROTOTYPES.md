@@ -38,6 +38,8 @@
     console.log(Meyve.prototype.__proto__ === Object.prototype); // true
     ```
 
+    ![prototype-chain](./assets/6_PROTOTYPE_CHAIN.png)
+
 - `Object.create(context)` fonksiyonu veya `new` anahtar kelimesi ile oluşturulan bir *object*'te erişilmeye çalışılan değer bulunamazsa `__proto__` property'sine bakılır. Fonksiyondaki `context` parametresi, *object*'in `__proto__` *property*'sine atanır.
 
     ```javascript

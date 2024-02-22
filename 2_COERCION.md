@@ -8,6 +8,10 @@
 
 Otomatik olarak yapılan dönüşüm işlemidir. Örneğin `1 + "2"` işleminde `+` operatörü `number` ve `string` tiplerini toplamaya çalıştığından dolayı işlemi  `1 + Number("2")` olarak dönüştürür ve hesaplar.
 
+> ### Dikkat Edilmesi Gerekenler
+>
+> *Implicit coercion* işlemleri kodun okunabilirliğini arttırır. Fakat *number* olması gereken parametrenin *string* dönmesi gibi bazı beklenmedik sonuçlar doğurabilir. Bu gibi durumlarda tiplerin dönüşümlerini bilmek önem kazanır.
+
 ### Explicit Coercion
 
 Kullanıcının yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işlemi kullanıcının  string bir değeri sayıya çevirmesidir.
@@ -15,6 +19,10 @@ Kullanıcının yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işle
 > ### `===` ve Diğer Karşılaştırma Operatörlerinde Coercion
 >  
 > İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit *coercion* işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda *coercion* işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
+>
+> ### Implicit ve Explicit Coercion Tercihi
+> 
+> *Coercion* işlemlerinde gerekli olmayan bir dönüşümün *implicit* veya *explicit* olması gerektiğinin tercihini yaparken yazılımcının kendisine şu soruyu sorması gerekir: "***Bu dönüşümü açıkça göstermek okuyucuya yardımcı mı olur yoksa okuyucunun dikkatini mi dağıtır?***"
 
 ## 2.2. Abstract Operations
 
@@ -34,9 +42,11 @@ Bir değeri primitive tipe dönüştürmek için kullanılır. `ToPrimitive` iş
 
 ### Dönüşüm Tablosu
 
-Tiplerin detaylı dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md).
+Tiplerin detaylı dönüşüm tablosu için [tıklayınız](./assets/2_COERCION_TABLE.md).
 
-> `null` ve `undefined` tipleri sayıya dönüştürülürken ilk önce `toString` metodu kullanılacağından dolayı değer boş string'e (`""`) dönüşür. Boş string sonrasında `number` tipine dönüştürülerek `0` elde edilir.
+> ### null ve undefined Neden `0` Döndürür?
+>
+> `null` ve `undefined` tipleri sayıya dönüştürülürken ilk önce `toString` metodu kullanılacağından dolayı bu değerler boş string'e (`""`) dönüştürülür. Elde edilen boş string sonrasında `number` tipine dönüştürülerek `0` döndürülür.
 
 ## 2.3. Boxing
 
@@ -47,10 +57,5 @@ Tiplerin detaylı dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md)
 - `+` operatörü **string** değerleri birleştirmek için de kullanıldığından dolayı `"16" + 1` işlemi `161` sonucunu verebilir. Burada dikkat edilmesi gereken boş *string* `""` sayıya dönüştürüldüğünde `0` döndürür.
 - `-` operatörü sadece sayılar için kullanıldığından dolayı herhangi bir *string* kullanıldığında sayıya dönüştürülecektir.
 - Aynı yerde birden fazla *karşılaştırma operatörü* kullanıldığında kontrol edilecek karşılaştırma soldan sağa doğru gerçekleşir. Örneğin `1 < 2 < 3` işleminde ilk olarak `1 < 2` işlemi `true` döner. Dönen `true` değeri sayıya dönüştürüldüğünde `1 < 3` işlemi elde edilir ve işlemin sonucunda `true` elde edilir.
-
-## 2.5 Notlar
-
-- *Implicit coercion* işlemleri kodun okunabilirliğini arttırır. Fakat *number* olması gereken parametrenin *string* dönmesi gibi bazı beklenmedik sonuçlar doğurabilir. Bu gibi durumlarda tiplerin dönüşümlerini bilmek önem kazanır.
-- *Coercion* işlemlerinde gerekli olmayan bir dönüşümün *implicit* veya *explicit* olması gerektiğinin tercihini yaparken yazılımcının kendisine şu soruyu sorması gerekir: "***Bu dönüşümü açıkça göstermek okuyucuya yardımcı mı olur yoksa dikkatini mi dağıtır?***"
 
 ### [Sonraki Sayfa](./3_EQUALITY.md)
