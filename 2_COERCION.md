@@ -2,7 +2,7 @@
 
 **Coercion**, bir tipten diğerine dönüşüm yapma işlemidir. Bu işlem bazı durumlarda otomatik olarak yapıldığından dolayı beklenmedik sonuçlar doğurabilir.
 
-## 2.1 Implicit ve Explicit Coercion
+## 2.1. Implicit ve Explicit Coercion
 
 ### Implicit Coercion
 
@@ -16,7 +16,7 @@ Kullanıcının yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işle
 >  
 > İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit *coercion* işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda *coercion* işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
 
-## 2.2 Abstract Operations
+## 2.2. Abstract Operations
 
 Javascript'te bazı işlemler abstract olarak tanımlanmıştır. Bu işlemler `ToPrimitive`, `ToBoolean`, `ToNumber`, `ToString`, `ToObject` ve `ToPropertyKey`'dir.
 
@@ -38,11 +38,11 @@ Tiplerin detaylı dönüşüm tablosu için [tıklayınız](2_COERCION_TABLE.md)
 
 > `null` ve `undefined` tipleri sayıya dönüştürülürken ilk önce `toString` metodu kullanılacağından dolayı değer boş string'e (`""`) dönüşür. Boş string sonrasında `number` tipine dönüştürülerek `0` elde edilir.
 
-## 2.3 Boxing
+## 2.3. Boxing
 
 *Primitive* tipler da tıpkı `object` tipi gibi property ve fonksiyonlara sahiptir Fakat obje gibi davranıyor olmaları onları öyle yapmaz. *Primitive* tiplerin de objeler gibi özelliklere sahip olması **boxing** olarak adlandırılır.
 
-## 2.4 İstisnalar
+## 2.4. İstisnalar
 
 - `+` operatörü **string** değerleri birleştirmek için de kullanıldığından dolayı `"16" + 1` işlemi `161` sonucunu verebilir. Burada dikkat edilmesi gereken boş *string* `""` sayıya dönüştürüldüğünde `0` döndürür.
 - `-` operatörü sadece sayılar için kullanıldığından dolayı herhangi bir *string* kullanıldığında sayıya dönüştürülecektir.

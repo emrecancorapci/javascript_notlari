@@ -6,7 +6,7 @@ Genel kanının aksine `===` operatörü `==` operatörünün eksikliklerini gid
 
 Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operatörü kullanmak daha güvenli bir seçenektir. Fakat bu seçeneğin tercih edilmesi, tercih nedeninin absürtlüğünü de göz önüne serer. Karşılaştırılan değerlerin tiplerinin bilinmiyor olması, *tehlikeli* bir karşılaştırmadan çok daha büyük bir sorundur. *Bir yazılım geliştirici yazdığı koddaki değerlerin tiplerini bilmiyorsa kodu da tam anlamıyla anlamıyor demektir.*
 
-## 3.1 Abstract Equality Comparison (==)
+## 3.1. Abstract Equality Comparison (==)
 
 - `==` operatörü farklı tipler arasında karşılaştırma yaparken bir değerin `number` olması durumunda diğer değeri de `number` tipine dönüştürecektir. Fakat değerlerden biri `object` ise bu değer, `ToPrimitive()` fonksiyonuyla karşılaştırma yapılabilecek bir tipe dönüştürülecektir.
 - `undefined` ve `null` karşılaştırılırken `==` operatörü kullanılması `===` operatörünün aksine `true` döndürür. Bu durumun sebebi `null` ve `undefined`'ın birbirine eşit fakat farklı tiplerde olmasıdır.
