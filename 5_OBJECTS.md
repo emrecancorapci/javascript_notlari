@@ -167,6 +167,8 @@
     meyve.yap.call(meyve); // undefined yapıldı!
     ```
 
+> ### Objelerde `this` Anahtar Kelimesi
+>  
 > `meyve` objesi bir `lexical scope` oluşturmadığı için `call` fonksiyonu ile `yap` fonksiyonu çağrıldığında `this` anahtar kelimesi *global* objeyi işaret eder.
 
 - Aşağıdaki örnekte `setTimeout` fonksiyonu *lexical scope*'a işaret ettiği için `this` anahtar kelimesi `meyve` objesini işaret eder.

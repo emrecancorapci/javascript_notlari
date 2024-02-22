@@ -11,6 +11,8 @@ Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operat
 - `==` operatörü farklı tipler arasında karşılaştırma yaparken bir değerin `number` olması durumunda diğer değeri de `number` tipine dönüştürecektir. Fakat değerlerden biri `object` ise bu değer, `ToPrimitive()` fonksiyonuyla karşılaştırma yapılabilecek bir tipe dönüştürülecektir.
 - `undefined` ve `null` karşılaştırılırken `==` operatörü kullanılması `===` operatörünün aksine `true` döndürür. Bu durumun sebebi `null` ve `undefined`'ın birbirine eşit fakat farklı tiplerde olmasıdır.
 
+> ### Objeler Eşitliği
+>  
 > Hiçbir obje birbirine eşit değildir. Sadece iki obje de aynı referansa sahip olursa eşitlik kabul edilir.
 
 ### Aşağıdaki durumlarda `==` operatörü kullanmaktan kaçının
@@ -21,6 +23,8 @@ Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operat
 
 - *non-primitive* tiplerin karşılaştırılması
 
+> ### Non-Primitive Tiplerde Karşılaştırma
+>  
 > *Non-primitive* tiplerde karşılaştırma işlemleri **referansları** aracılığıyla yapılır. İki farklı obje değerler bakımından aynı olsa da farklı referanslara sahip olduklarından dolayı karşılaştırma operatörü iki objeyi farklı görecektir. Bu gibi işlemlerde sağlıklı bir karşılaştırma yapılabilmesi için objeler özgün değerlere sahip olmalı ve bu değerler karşılaştırılmalıdır.
 
 - `x == true` ve `x == false` gibi karşılaştırmalar

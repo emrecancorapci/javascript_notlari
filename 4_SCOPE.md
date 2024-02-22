@@ -6,6 +6,8 @@ Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğ
 
 - `Lexical` terimi basitçe `kaynak kodu` veya başka bir deyişle `bir programın metniyle ilgili` anlamına gelir. `Lexical scope`'un bir diğer adı ise `static scope`'dur. Bu isim, bir değişkenin hangi scope'da olduğunun programın yazılım aşamasında belirlendiğini ifade eder.
 
+> ### Değişken Arama Sırası
+>  
 > Bir fonksiyonun içindeki bir değişken önce fonksiyonun `local environment`'ında (yerel ortamında), daha sonra ise `lexical environment`'ında aranır.
 
 - `Lexical environment` bir fonksiyon için o fonksiyonun kaynak kodundaki tanımını kapsayan ortamı ifade eder. Bu ortam fonksiyonun tanımlandığı yerdeki scope'lar ve bu scope'lar içerisindeki değişkenlerin birleşiminden oluşur.
@@ -115,6 +117,8 @@ muzSoy();
 - `IIFE` (Immediately Invoked Function Expression) pattern, bir fonksiyonun tanımlandığı yerde hemen çağrılmasını sağlayan bir pattern'dir. Bu pattern, bir fonksiyonun `lexical scope`'unu kullanarak global scope'dan izole edilmesini sağlar.
 - İçerdeki fonksiyon bir `function declaration` değil, `function expression` olarak nitelendirilir.
 
+> ### Declaration ve Expression arasındaki fark
+>  
 > `function declaration`, bir fonksiyonun adını ve gövdesini belirterek tanımlanmasını ifade eder. `function expression` ise bir fonksiyonun bir değişkene atanarak tanımlanmasını ifade eder.
 
 ```javascript
@@ -161,6 +165,8 @@ var meyve = ( function() {
    }
    ```
 
+> ### Block Scope Nedir?
+>  
 > `block scope`, bir blok içerisinde tanımlanan değişkenlerin sadece o blok içerisinde erişilebilir olmasını ifade eder.
 
 - `const` anahtar kelimesi ile tanımlanan değişkenlerin değeri bir kez atanır ve daha sonra değiştirilemez. Fakat `const` ile tanımlanan bir array veya object'in içeriği değiştirilebilir.
@@ -210,4 +216,6 @@ var meyve = ( function() {
    muzSoy('muz'); // muz soyuldu!
    ```
 
+> ### Closure Nerelerde Kullanılır?
+>  
 > Closure fonksiyonları `once` ve `memoize` gibi helper fonksiyonlar, `iterator` ve `generator` fonksiyonları, `Module Pattern` ve `Revealing Module Pattern` design pattern'ları, `Callback` ve `Promise` async operasyonları gibi birçok alanda kullanılır.

@@ -12,7 +12,9 @@ Otomatik olarak yapılan dönüşüm işlemidir. Örneğin `1 + "2"` işleminde 
 
 Kullanıcının yaptığı dönüşüm işlemidir. Örneğin `Number("2")` işlemi kullanıcının  string bir değeri sayıya çevirmesidir.
 
-- İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit *coercion* işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda *coercion* işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
+> ### `===` ve Diğer Karşılaştırma Operatörlerinde Coercion
+>  
+> İki farklı tipi karşılaştırılıyorsa `==`, `<`, `>`, `<=`, `>=` operatörleri implicit *coercion* işlemi gerçekleştirir. Fakat `===` operatöründe tiplerin farklı olması durumunda *coercion* işlemi gerçekleşmez ve `false` döndürür. Bu operatörlerin nasıl kullanılacağı hakkında daha fazla bilgi almak için bir sonraki bölüm olan [Equality](./3_EQUALITY.md) bölümüne bakabilirsiniz.
 
 ## 2.2 Abstract Operations
 
