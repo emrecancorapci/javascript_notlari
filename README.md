@@ -10,15 +10,6 @@ Halihazırda başlangıç seviyesinde bir yazılımcı olmadığım için bu not
 
 Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklanmamış veya eksik bırakılmış yerler olabilir. Bu yüzden yetersiz olduğunu düşündüğünüz yerleri issue açarak belirtirseniz elimden geldiğince açıklamaya çalışırım.
 
-## İçerik
-
-- [Types](./1_TYPES.md)
-- [Coercion](./2_COERCION.md)
-- [Equality](./3_EQUALITY.md)
-- [Scope](./4_SCOPE.md)
-- [Objects](./5_OBJECTS.md)
-- [Prototypes](./6_PROTOTYPES.md) (Yazım aşamasında)
-
 ## Kurslar
 
-- [Deep JavaScript Foundations, v3](https://frontendmasters.com/courses/deep-javascript-v3/)
+- [Deep JavaScript Foundations, v3](./deep-js-foundations/README.md)

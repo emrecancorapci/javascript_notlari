@@ -31,4 +31,4 @@ Karşılaştırılan değerlerin tiplerinin bilinmediği durumlarda `===` operat
 
 > `x`'in `true` veya `false` olup olmadığını kontrol etmek için `x`'in tipinin bilinmesi gerekmektedir. Bu durumda `===` operatörü kullanılmalıdır. Alternatif olarak `ToBoolean()` fonksiyonu da kullanılabilir.
 
-### [Sonraki Sayfa](./4_SCOPE.md)
+### [Önceki Sayfa](./2_COERCION.md) | [Sonraki Sayfa](./4_SCOPE.md) | [Ana Sayfa](./README.md) | [Yukarı Çık](#3-equality)

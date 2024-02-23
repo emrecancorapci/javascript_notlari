@@ -1,8 +1,8 @@
-# 5. Objects
+# 6. Objects
 
 - Fonksiyonları çağırmanın birkaç yolu bulunmaktadır. Bu yollar `call`, `apply`, `bind` ve `new` fonksiyonlarıdır. Bu fonksiyonlar, fonksiyonların `this` anahtar kelimesinin değerini değiştirmek için kullanılır.
 
-## 5.1. Implicit Binding
+## 6.1. Implicit Binding
 
 - `this` anahtar kelimesi, bir fonksiyonun çağrıldığı zaman, fonksiyonun çağrıldığı objeyi işaret eder. Bu işlem ***implicit binding*** olarak adlandırılır.
 - Aşağıdaki örnekte `yap` fonksiyonu `meyve` objesi içeriği ile çağrıldığı için `this` anahtar kelimesi `meyve` objesini işaret eder.
@@ -39,7 +39,7 @@
     sebze.soy(); // Domates soyuldu!
     ```
 
-## 5.2. Explicit Binding
+## 6.2. Explicit Binding
 
 - Fonksiyonları çağırmanın birkaç yolu bulunmaktadır. Bu yolların en yaygın olanlarından biri de `call` fonksiyonudur.
 
@@ -67,7 +67,7 @@
 
 - Burada `call` fonksiyonu, `greet` fonksiyonunu `person` objesi içeriği ile çağırır. Bu sayede `this` anahtar kelimesi `person` objesini işaret eder. Bu işlem ***explicit binding*** olarak adlandırılır.
 
-## 5.3. Hard Binding
+## 6.3. Hard Binding
 
 - `call` fonksiyonu, fonksiyonu çağırırken `this` anahtar kelimesinin değerini değiştirebilir. Ancak, bu değişiklikler kalıcı olmaz. Yani, bir fonksiyonun `this` anahtar kelimesinin değerini bir kez değiştirdiğinizde, bu değişiklikler sadece o çağrı için geçerli olur.
 - `bind` fonksiyonu, fonksiyonun `this` anahtar kelimesinin değerini kalıcı olarak değiştirmek için kullanılır.
@@ -113,7 +113,7 @@
   3. Yeni nesneyi işaret eden `this` anahtar sözcüğüyle fonksiyonu çağırır.
   4. Fonksiyon bir obje döndürmezse, `this` değeri otomatik olarak döndürülür.
 
-## 5.4. Default Binding
+## 6.4. Default Binding
 
 - `this` anahtar kelimesi, bir fonksiyonun çağrıldığı zaman, fonksiyonun çağrıldığı objeyi işaret eder. Eğer bir fonksiyonun çağrıldığı zaman, fonksiyonun çağrıldığı obje yoksa, `this` anahtar kelimesi *global* objeyi işaret eder. Bu işlem ***default binding*** olarak adlandırılır.
 - Aşağıdaki örnekte `yap` fonksiyonu *global* obje içeriği ile çağrıldığı için `this` anahtar kelimesi *global* objeyi işaret eder.
@@ -150,7 +150,7 @@
     soy(); // TypeError: Cannot read property 'meyve' of undefined
     ```
 
-## 5.5. Arrow Functions
+## 6.5. Arrow Functions
 
 - Arrow fonksiyonlarda `this` anahtar kelimesi, fonksiyonun tanımlandığı *lexical scope*'a işaret eder. Bu durum `function` anahtar kelimesi ile tanımlanan fonksiyonlardan farklıdır.
 - Aşağıdaki örnekte `yap` fonksiyonu *lexical scope*'a işaret ettiği için `this` anahtar kelimesi *global* objeyi işaret eder.
@@ -186,6 +186,8 @@
     meyve.yap(); // Elma yapıldı!
     ```
 
-## 5.6. Notlar
+> ### `bind` ve `this` Kullanımı
+>
+> Aynı `class`'ta olsa bile `this` kullanarak *context*'ten bir *property* çağıran bir fonksiyonun aynı *scope*'taki başka bir fonksiyondan çağrılması durumunda `bind` **yapılmaması**, `this`'in *global* objeyi işaret etmesine sebep olur. Bu nedenle `this` kullanan fonksiyonlar başka bir fonksiyondan çağrılırken `bind(this)` kullanılarak objeye *context* verilmelidir.
 
-- Aynı `class`'ta olsa bile `this` kullanarak *context*'ten bir *property* çağıran bir fonksiyonun aynı *scope*'taki başka bir fonksiyondan çağrılması durumunda `bind` **yapılmaması**, `this`'in *global* objeyi işaret etmesine sebep olur. Bu nedenle `this` kullanan fonksiyonlar başka bir fonksiyondan çağrılırken `bind(this)` kullanılarak objeye *context* verilmelidir.
+### [Önceki Sayfa](./5_ENGINE.md) | [Sonraki Sayfa](./7_PROTOTYPES.md) | [Ana Sayfa](./README.md) | [Yukarı Çık](#6-objects)

@@ -1,6 +1,6 @@
-# 6. Prototypes
+# 7. Prototypes
 
-## 6.0. Prototype
+## 7.0. Prototype
 
 - JavaScript'te her obje bir *prototype*'a sahiptir. *Prototype*, bir objenin diğer objelerden özelliklerini miras almasını sağlar.
 - Bir objenin *prototype*'ına, `__proto__` *property*'si ile erişilebilir. Bir *prototype*'ın *property*'lerine ise `prototype` *property*'si ile erişilebilir.
@@ -15,7 +15,7 @@
 
 - Objeler `new` anahtar kelimesi kullanılarak ***constructor call***'lar ile oluşturulur. ***Constructor call*** obje ve kendi *prototype*'ı ile bağlar.
 
-## 6.1. Prototype Chain
+## 7.1. Prototype Chain
 
 - Bir objenin *prototype*'ı, bir başka objenin *prototype*'ı olabilir. Bu durumda bir ***prototype chain***  oluşur. Ve *prototype*'ın sahip olduğu özellikler, *prototype chain* ile birbirine bağlıdır.
 - Tüm objelerin *prototype*'ları, `Object.prototype`'a kadar uzanır. Bu durumda bir objenin *prototype*'ı olmadığı zaman, `Object.prototype`'a bakılır.
@@ -38,7 +38,7 @@
     console.log(Meyve.prototype.__proto__ === Object.prototype); // true
     ```
 
-    ![prototype-chain](./assets/6_PROTOTYPE_CHAIN.png)
+    ![prototype-chain](./assets/7_PROTOTYPE_CHAIN.png)
 
 - `Object.create(context)` fonksiyonu veya `new` anahtar kelimesi ile oluşturulan bir *object*'te erişilmeye çalışılan değer bulunamazsa `__proto__` property'sine bakılır. Fonksiyondaki `context` parametresi, *object*'in `__proto__` *property*'sine atanır.
 
@@ -52,7 +52,7 @@
     console.log(muz.__proto__ === meyve); // true
     ```
 
-## 6.2. Shadowing
+## 7.2. Shadowing
 
 - *class* kullanılmadan gerçekleştirilen *inheritance* işlemlerinde, *prototype*'lar kullanılır. Bu durumda *prototype*'lar arasında ***shadowing*** olabilir. *Shadowing*, bir *prototype*'ın *property*'lerinin, bir başka *prototype*'ın *property*'lerini gizlemesi anlamına gelir.
 
@@ -88,7 +88,7 @@
 
 - *Class* kullanılmadan gerçekleştirilen [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)), bu gibi makul olmayan çözümlere yol açabilir. Böyle durumlarda *class* kullanımı daha uygun olabilir.
 
-## 6.3. Prototypal Inheritance
+## 7.3. Prototypal Inheritance
 
 - JavaScript'te *class* kullanılmadan gerçekleştirilen *inheritance* işlemlerine ***prototypal inheritance*** denir. Bu durumda bir obje, diğer bir objenin *prototype*'ını miras alır.
 
@@ -119,11 +119,10 @@
 
 Diğer dillerde gerçekleşen inheritance işlemlerinde inherit edilen *class*'ın *property*'leri, *subclass*'a kopyalanır. Fakat JavaScript'te gerçekleşen *inheritance* işlemlerinde kopyalama gerçekleştirmek yerine aralarında bağ kurar. *Subclass*, *prototype chain* kullanarak *superclass*'ın *property*'lerine erişebilir.
 
-> **Subclass**: Inherit eden *class*
-> 
-> **Superclass**: Inherit edilen *class*
+> - **Subclass**: Inherit eden *class*
+> - **Superclass**: Inherit edilen *class*
 
-## 6.4. Delegation Pattern
+## 7.4. Delegation Pattern
 
 - JavaScript'te *class* kullanılmadan gerçekleştirilen *inheritance* işlemlerine ***delegation pattern*** denir. Bu durumda bir obje, diğer bir objenin *property*'lerini kullanır.
 
@@ -150,3 +149,5 @@ Diğer dillerde gerçekleşen inheritance işlemlerinde inherit edilen *class*'�
     elma.init('Elma', 'kırmızı');
     elma.soy(); // Elma soyuldu!
     ```
+
+### [Önceki Sayfa](./6_OBJECTS.md) | [Ana Sayfa](./README.md) | [Yukarı Çık](#7-prototypes)

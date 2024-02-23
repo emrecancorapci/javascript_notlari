@@ -2,7 +2,7 @@
 
 Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğini belirler. Scope'lar fonksiyonlar ve bloklar aracılığıyla oluşturulur. Bu scope'lar `lexical scope` olarak adlandırılır.
 
-## 4.1 Lexical Scope
+## 4.1. Lexical Scope
 
 - `Lexical` terimi basitçe `kaynak kodu` veya başka bir deyişle `bir programın metniyle ilgili` anlamına gelir. `Lexical scope`'un bir diğer adı ise `static scope`'dur. Bu isim, bir değişkenin hangi scope'da olduğunun programın yazılım aşamasında belirlendiğini ifade eder.
 
@@ -12,84 +12,24 @@ Scope, bir değişkenin tanımlandığı yerden yola çıkarak erişilebilirliğ
 
 - `Lexical environment` bir fonksiyon için o fonksiyonun kaynak kodundaki tanımını kapsayan ortamı ifade eder. Bu ortam fonksiyonun tanımlandığı yerdeki scope'lar ve bu scope'lar içerisindeki değişkenlerin birleşiminden oluşur.
 
-- Aşağıdaki örnekte `lexical scope`'un nasıl çalıştığını görebiliriz:
+- Aşağıdaki örnekte `f1` fonksiyonu `f2` fonksiyonunun içerisinde çağrıldığı halde `a` değişkeninin değeri `global` olacaktır. Çünkü `f1` fonksiyonu `f2` fonksiyonunun tanımı içerisinde değil, global scope'da tanımlıdır. Fonksiyon öncelikle `a` değişkenini kendi scope'unda arayacak, bulamazsa `lexical environment`'a bakacaktır.
 
-```javascript
-var a = 'global';
+   ```javascript
+   var a = 'global';
 
-function f1() {
-   console.log(a);
-}
+   function f1() {
+      console.log(a);
+   }
 
-function f2() {
-   var a = 'local';
-   f1();
-}
+   function f2() {
+      var a = 'local';
+      f1();
+   }
 
-f2();
-```
+   f2();
+   ```
 
-- Yukarıdaki örnekte `f1` fonksiyonu `f2` fonksiyonunun içerisinde çağrıldığı halde `a` değişkeninin değeri `global` olacaktır. Çünkü `f1` fonksiyonu `f2` fonksiyonunun tanımı içerisinde değil, global scope'da tanımlıdır. Fonksiyon öncelikle `a` değişkenini kendi scope'unda arayacak, bulamazsa `lexical environment`'a bakacaktır.
-
-## 4.2 Compiler Theory
-
-- `Compiler` terimi, bir programın kaynak kodunu `machine code`'a çeviren bir yazılımı ifade eder. `Machine code` ise bir bilgisayarın anlayabileceği dilde yazılmış kodları ifade eder.
-- Javascript kodu `Compile Time` ve `Run Time` diye adlandırılan iki aşamada çalıştırılır.. `Compile Time`'da kodun `lexical scope`'u belirlenirken `Run Time`'da kodun çalıştırılması gerçekleşir.
-- Compiler, Javascript kodu `JavaScript Virtual Machine`'in anlayacağı dile çevrilirken diğer yandan da `lexical scope`'un da belirlenmesi gerçekleşir. Bu işlemi yapılırken uygulanan bir diğer terim ise `scope resolution`'dır. Bu terim, bir değişkenin hangi scope'da olduğunun belirlenmesi anlamına gelir.
-- Bu Compile işleminden sorumlu olan `Engine` ve `Scope Manager` isimli iki varlık bulunur. `Engine`, kodun çalıştırılmasından sorumlu olan kısımdır. `Scope Manager` ise `lexical scope`'un belirlenmesinden sorumludur.
-
-### Scope Manager
-
-```javascript
-var meyve = 'elma';
-
-function muzSoy() {
-   var meyve = 'muz';
-   console.log('Muz soyuldu!');
-}
-
-function soy() {
-   var sebze = 'havuç';
-   console.log(meyve, 'soyuldu!');
-}
-
-muzSoy(); // Muz soyuldu!
-soy(); // elma soyuldu!
-```
-
-- Yukarıdaki kodda Scope Manager sırayla aşağıdaki adımları gerçekleştirir:
-  1. `meyve` değişkeni `lexical environment`'a eklenir.
-  2. `muzSoy` fonksiyonunun `lexical environment`'ı oluşturulur.
-  3. `meyve` değişkeni `muzSoy` fonksiyonunun `lexical environment`'ına eklenir.
-  4. `soy` fonksiyonunun `lexical environment`'ı oluşturulur.
-  5. `sebze` değişkeni `soy` fonksiyonunun `lexical environment`'ına eklenir.
-  6. `meyve` değişkeni `console.log(meyve, 'soyuldu!')` fonksiyonunda referans edildiğinden dolayı `soy` fonksiyonunun `lexical environment`'ına eklenir.
-- Tüm bu işlemler `Compile Time`'da gerçekleşir.
-
-### The Javascript Engine
-
-- `Engine`, kodun çalıştırılmasından sorumlu olan kısımdır. `Engine`'un görevi `lexical scope`'u kullanarak değişkenlere erişmek ve bu değişkenlerin değerlerini almak veya değiştirmektir.
-
-```javascript
-var meyve = 'elma';
-console.log(meyve);
-
-function muzSoy() {
-   var meyve = 'muz';
-   console.log('Muz soyuldu!');
-}
-
-muzSoy();
-```
-
-- Yukarıdaki kodda ilk satırda `meyve` değişkeni `l-value(source)`, `elma` değeri ise `r-value(target)` olarak adlandırılır.
-- `meyve`'nin `lexical environment`'ta olup olmadığı Engine tarafından kontrol edilir. Eğer mevcutsa `elma` değeri, `meyve` değişkenine atanır.
-- İkinci satırda ise r-value olan `meyve` değişkeni l-value olan `console.log()` fonksiyonuna referans edildiği için `lexical environment`'a bakılır. `meyve` değişkeni bulunur ve `elma` değeri yazdırılır.
-- L-value olan `muzSoy` fonksiyonu çalıştırıldığında `lexical environment`'a bakılır ve `muzSoy` fonksiyonunun `lexical environment`'ı bulunur. Environment'taki kod çalıştırılır ve `Muz soyuldu!` yazdırılır.
-
-> Çağrılan fonksiyonlar neden l-value olur sorusuna verilebilecek en iyi cevap, kendisinin bir `target reference` olmamasıdır. Eğer bir `r-value` değilse, bir `l-value` olmalıdır çünkü elimizde iki seçenek vardır.
-
-## 4.3 Nested Scopes
+## 4.2. Nested Scopes
 
 - `Nested scope`, bir scope'un başka bir scope'un içerisinde bulunması durumunu ifade eder. Bu durumda içteki scope, dıştaki scope'un değişkenlerine erişebilir.
 
@@ -112,7 +52,7 @@ muzSoy();
 
 - Yukarıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu yüzden `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına yani `eylem` değişkenine erişebilir. Ancak `soy` fonksiyonu `elmaSoy` fonksiyonunun dışında tanımlı olmadığı için bu fonksiyona global scope'da erişilemez. Bu yüzden `soy('muz')` fonksiyonu global scope'da tanımlı olmadığı için fonksiyon çalıştırıldığında `ReferenceError` hatası verir.
 
-## 4.4 IIFE Pattern
+## 4.3. IIFE Pattern
 
 - `IIFE` (Immediately Invoked Function Expression) pattern, bir fonksiyonun tanımlandığı yerde hemen çağrılmasını sağlayan bir pattern'dir. Bu pattern, bir fonksiyonun `lexical scope`'unu kullanarak global scope'dan izole edilmesini sağlar.
 - İçerdeki fonksiyon bir `function declaration` değil, `function expression` olarak nitelendirilir.
@@ -139,7 +79,7 @@ var meyve = ( function() {
 } )();
 ```
 
-## 4.5 var vs let vs const
+## 4.4. var vs let vs const
 
 - `var` anahtar kelimesi ile tanımlanan değişkenler `lexical scope`'a sahiptir. `let` ve `const` anahtar kelimeleri ile tanımlanan değişkenler ise `block scope`'a sahiptir.
 
@@ -181,7 +121,9 @@ var meyve = ( function() {
    console.log(peynir); // ['cheddar', 'beyaz', 'tulum']
    ```
 
-## 4.6 Hoisting
+> Objeler *scope* oluşturmaz.
+
+## 4.5. Hoisting
 
 - Genel kanının aksine Javascript'te tanımlamalar en yukarıya çekilmez. Öncelikle compile edildiği için tanımlamalar gerçekleştirildikten sonra kod çalıştırılır.
 - `var` ile tanımlanan değişkenler ve fonksiyonlara tanımları yapılmadan önce erişilebildiği halde `let` ve `const` ile tanımlanan değişkenlere erişilemez. Erişilmeye çalışıldığında ise `TDZ (Temporal Dead Zone)` hatası alınır.
@@ -196,7 +138,7 @@ var meyve = ( function() {
    }
    ```
 
-## 4.7. Closure
+## 4.6. Closure
 
 - Bir fonksiyonun mevcut scope'u dışındaki bir değişkene erişebilmesi durumuna `closure` denir. Bu durumda fonksiyon, kendi scope'u dışındaki bir değişkene erişebilir ve bu değişkeni kullanabilir.
 - Aşağıdaki örnekte `soy` fonksiyonu `elmaSoy` fonksiyonunun içerisinde tanımlıdır. Bu durumda closure var olduğu için `soy` fonksiyonu `elmaSoy` fonksiyonunun `lexical environment`'ına erişebilir. Bu durumda `soy` fonksiyonu `eylem` değişkenine erişebilir ve bu değişkeni kullanabilir. Bu durumda `soy` fonksiyonu `closure`'a sahiptir.
@@ -219,3 +161,31 @@ var meyve = ( function() {
 > ### Closure Nerelerde Kullanılır?
 >  
 > Closure fonksiyonları `once` ve `memoize` gibi helper fonksiyonlar, `iterator` ve `generator` fonksiyonları, `Module Pattern` ve `Revealing Module Pattern` design pattern'ları, `Callback` ve `Promise` async operasyonları gibi birçok alanda kullanılır.
+
+## 4.7. Module Pattern
+
+- `Module Pattern`, bir fonksiyonun dışarıya sadece belirli fonksiyonları veya değişkenleri açmasını sağlayan bir pattern'dir. Bu pattern, `closure`'ı kullanarak bir fonksiyonun dışarıya sadece belirli fonksiyonları veya değişkenleri açmasını sağlar.
+
+   ```javascript
+   var module = ( function() {
+      var privateVariable = 'private';
+
+      function privateFunction() {
+         console.log('private function');
+      }
+
+      return {
+         publicVariable: 'public',
+         publicFunction: function() {
+            console.log('public function');
+         }
+      };
+   } )();
+
+   console.log(module.privateVariable); // undefined
+   module.privateFunction(); // TypeError: module.privateFunction is not a function
+   console.log(module.publicVariable); // public
+   module.publicFunction(); // public function
+   ```
+
+### [Önceki Sayfa](./3_EQUALITY.md) | [Sonraki Sayfa](./5_ENGINE.md) | [Ana Sayfa](../README.md) | [Yukarı Çık](#4-scope)

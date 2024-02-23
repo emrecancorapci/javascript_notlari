@@ -53,4 +53,4 @@ Matematiksel işlem sonucu oluşan hata durumunu belirten `number` tipinde bir d
 
 **IEEE 754** standardında uygun olarak *negative zero* ve *positive zero* değerleri bulunur. *Negative zero* daha sonraki **ECMAScript** versiyonlarda dahil edildiğinden dolayı `0` ve `-0` değerleri `===` operatörü ile karşılaştırıldığında `true` dönecektir. Fakat sonradan eklenen ve daha doğru çalışan `Object.is(value)` fonksiyonu bu değerleri birbirinden ayrıt edebilir.
 
-### [Sonraki Sayfa](./2_COERCION.md)
+### [Ana Sayfa](./README.md) | [Sonraki Sayfa](./2_COERCION.md) | [Yukarı Çık](#1-types)
