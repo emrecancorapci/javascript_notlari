@@ -5,11 +5,11 @@
 ### Performans Neden Önemli?
 
 - Çünkü **Google** öyle diyor.
-- Ne kadar **hızlı** olursa o kadar **iyi bir kullanıcı deneyimi** sunar. Ne kadar **iyi kullanıcı deneyimi** sunarsa o kadar **çok kullanıcıya** ulaşır. Ne kadar **çok kullanıcıya** ulaşırsa o kadar **çok para** kazanır.
+- Ne kadar **hızlı** olursa o kadar iyi **kullanıcı deneyimi** sunar. Ne kadar iyi  **kullanıcı deneyimi** sunarsa o kadar çok **kullanıcıya** ulaşır. Ne kadar çok **kullanıcıya** ulaşırsa o kadar çok **para** kazanır.
 
 ### Beklemenin Psikolojisi
 
-- Beklemek göreceli bir kavramdır. Bekleme süresi kullanıcıdan kullanıcıya değişir.
+- Beklemek göreceli bir kavramdır ve bir çok faktöre bağlıdır.
 - Beklemeyi göze aldığımız zaman, beklentilerimiz ve beklerken ne yapabildiğimize göre değişir.
 
 #### İnsanlar bir an önce başlamak ister
@@ -57,7 +57,7 @@ Eğer beklediğiniz şeyin değerli olduğunu düşünüyorsanız, beklemeye dah
 
 - **Lighthouse**, web uygulamalarının performansını ölçmek için kullanılan tarayıcının geliştirici konsolunda çalışan bir araçtır. **Google** tarafından geliştirilmiştir. **Lighthouse**'un sunduğu raporlar sayesinde web uygulamalarının performansını ölçebilir ve performansı artırmak için neler yapmanız gerektiğini öğrenebilirsiniz.
 - Dikkat edilmesi gereken ilk şey Lighthouse çalıştırılırken geliştirici konsolunun ekran boyutunu küçültecek şekilde tarayıcıya bağlı olmamasıdır. Küçük ekranda çalıştırılan Lighthouse, o boyuttaki bir sayfanın performansını ölçer.
-- Alınan raporlardaki metrikler kullanılan bilgisayar ve internetin performansına göre değişiklik gösterebilir. Bu yüzden raporları alırken farklı cihazlarda ve farklı internet hızlarında da test etmek faydalı olacaktır.
+- Alınan raporlardaki metrikler kullanılan bilgisayar ve internet'in performansına göre değişiklik gösterebilir. Bu yüzden raporları alırken farklı cihazlarda ve farklı internet hızlarında da test etmek faydalı olacaktır.
 
 ## 2. Metrikler
 
@@ -83,4 +83,14 @@ Gerçek kullanıcılarla yapılan testler ise **Real User Monitoring (RUM)** ile
 
 Bu testlerde kullanıcılardan alınan verilerin konum, cihaz, tarayıcı, internet hızı gibi bilgileri dikkate alınarak sınıflandırılması gerekmektedir. Bu sınıflandırmalar hedef kitlenizi belirlemenizde ve kitlenize uygun çözümler sunabilmenizde size yardımcı olacaktır.
 
-> [**web.dev**](https://web.dev/) adresinden web performansı ve **Core Web Vitals** ile ilgili **Google**'ın sağladığı bir çok bilgiye ulaşabilirsiniz.
+> **Google**'ın sağladığı [**web.dev**](https://web.dev/) adresinden, web performansı ve **Core Web Vitals** ile ilgili bir çok bilgiye ulaşabilirsiniz.
+
+### Verileri Yorumlamak
+
+Performans veri setinizi yorumlarken önemli olan kriter ortalamalar değil, dağılımlardır. Yani skorlarınızın ortalamasının iyi olması, kullanıcılarınızın genelinin deneyiminin iyi olduğu anlamına gelmez. Önemli olan, skorlarınızın dağılımının iyi olmasıdır.
+
+> Örneğin kullanıcılarınızın çeyreği çok iyi bir performans gözlemlerken kalanı yeterli bir performans gözlemleyemiyorsa, ortalama değeriniz yüksek olduğu halde kullanıcılarınızın çoğunluğu iyi bir deneyim yaşamıyor demektir.  
+
+Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** ifade eder. Yani veri setinizdeki değerlerin yarısı medyan değerinden küçük, yarısı medyan değerinden büyüktür. Google'ın dikkat ettiği yer ise %75'lik dilimdir. Veri setinizin %75'lik dilimi iyi bir performans gösteriyorsa, kullanıcılarınızın çoğunluğunun iyi bir deneyim yaşadığını söyleyebilirsiniz.
+
+> %95'lik dilimin dışında kalan veriler en kötü deneyimi yaşayan %5'lik dilimi temsil eder. Bu dilimdeki kullanıcılarınızın deneyimini iyileştirmek çok zordur. Bu dilimi hedef almak mantıklı bir strateji olmayabilir.
