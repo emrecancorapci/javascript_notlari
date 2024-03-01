@@ -94,3 +94,65 @@ Performans veri setinizi yorumlarken önemli olan kriter ortalamalar değil, da�
 Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** ifade eder. Yani veri setinizdeki değerlerin yarısı medyan değerinden küçük, yarısı medyan değerinden büyüktür. Google'ın dikkat ettiği yer ise %75'lik dilimdir. Veri setinizin %75'lik dilimi iyi bir performans gösteriyorsa, kullanıcılarınızın çoğunluğunun iyi bir deneyim yaşadığını söyleyebilirsiniz.
 
 > %95'lik dilimin dışında kalan veriler en kötü deneyimi yaşayan %5'lik dilimi temsil eder. Bu dilimdeki kullanıcılarınızın deneyimini iyileştirmek çok zordur. Bu dilimi hedef almak mantıklı bir strateji olmayabilir.
+
+## 3. Performansı İyileştirmek
+
+### Web İşletmesinin Hedefi
+
+1. **Farkındalık**: Neler yaptığınız ve ürünlerinizin ne olduğu hakkında bilgi vermek.
+2. **Muhafaza**: Kullanıcılarınızı yakında tutarak ürünlerinizin kullanımını artırmak.
+3. **Dönüşüm**: Yeni kullanıcılar kazanmak ve mevcut etkileşimleri gelire dönüştürmek.
+4. **Rekabet**: Rakiplerinizden iyi olmak.
+
+> Ancak %20 oranında performans farkı kullanıcılar tarafından fark edilebilir. Yeterli performans sağlandıktan sonra daha fazla performans iyileştirmeleri yapmak yerine, başka alanlarda iyileştirmeler yapmak daha mantıklı bir karar olacaktır.
+
+### Performance API
+
+**Performance API**, tarayıcıların performans verilerine erişmek için kullanılan bir API'dir. Bu API sayesinde tarayıcıların performans verilerine erişebilir ve bu verileri kullanarak performansı ölçebilirsiniz.
+
+> MDN'de [**Performance API**](https://developer.mozilla.org/en-US/docs/Web/API/Performance) hakkında daha fazla bilgi bulabilirsiniz.
+
+
+```javascript
+const performance = window.performance;
+
+const navigationTiming = performance.getEntries();
+console.log(navigationTiming);
+```
+
+```json
+
+[
+  ...
+  {
+    "connectEnd": 163.22,
+    "connectStart": 75.35,
+    "domComplete": 650.51,
+    "domContentLoadedEventEnd": 531.47,
+    "domContentLoadedEventStart": 529.13,
+    "domInteractive": 497.93,
+    "domainLookupEnd": 75.35,
+    "domainLookupStart": 20.75,
+    "duration": 650.51,
+    "entryType": "navigation",
+    "fetchStart": 4.37,
+    "loadEventEnd": 650.51,
+    "loadEventStart": 650.50,
+    "name": "http://localhost:3000/",
+    "redirectEnd": 0,
+    "redirectStart": 0,
+    "requestStart": 163.22,
+    "responseEnd": 213.92,
+    "responseStart": 211.62,
+    "secureConnectionStart": 120.98,
+    "type": "navigate"
+  },
+  ...
+]
+```
+
+> **Performance API**'nin sunduğu veriler, tarayıcıların performans verileri olduğu için tarayıcıya bağlı olarak değişiklik gösterebilir.
+
+### Bir HTTP Request Diyagramı
+
+![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
