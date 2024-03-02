@@ -40,9 +40,11 @@ Eğer beklediğiniz şeyin değerli olduğunu düşünüyorsanız, beklemeye dah
 
 #### Eski Metrikler
 
-- Eskiden performansı ölçmek için tek bir metrik kullanılırdı: **Page Load Time**. Ama bu metrik, kullanıcı deneyimini tam olarak yansıtmıyordu. Çünkü sayfa yüklendikten sonra da kullanıcılar sayfa üzerinde etkileşimde bulunarak sayfayı değiştirebilirler.
-- *React*, *Vue* gibi **Single Page Application**'lar sayfa yüklendikten sonra sayfa içerisindeki içerikleri dinamik olarak değiştirebilirler. Bunun yanında kullanıcıya ilk gönderilen HTML sayfası sadece boş beyaz bir sayfadan ibarettir. Bu yüzden **Page Load Time** metriği bu tür uygulamalarda kullanıcı deneyimini tam olarak yansıtamaz.
-- Bu yüzden günümüzde bu metrik terk edilerek yerine **Google**'ın geliştirdiği **Web Vitals** metrikleri kullanılmaya başlandı.
+Eskiden performansı ölçmek için **Page Load Time** *-HTML dokümanının yüklenme süresi-* baz alınırdı. Ancak bu metrik, günümüzdeki web uygulamaları için yeterli değildir.
+
+Günümüzde *React*, *Vue* gibi **Single Page Application** geliştirilebilmesini sağlayan kütüphaneler, kullanıcıya öncelikle boş bir HTML sayfası gönderir. Ardından javascript ile sayfa içeriği yüklenir. Bu yüzden **Page Load Time** metriği bu tür uygulamalarda kullanıcı deneyimini tam olarak yansıtamaz
+
+Bu yüzden günümüzde bu metrik terk edilerek yerine **Google**'ın geliştirdiği **Web Vitals** metrikleri kullanılmaya başlandı.
 
 #### Web Vitals Metrikleri
 
@@ -156,3 +158,31 @@ console.log(navigationTiming);
 ### Bir HTTP Request Diyagramı
 
 ![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
+
+## 4. Metriklerin İyileştirilmesi
+
+### FCP (First Contentful Paint)
+
+Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir takım dokümanlar var. FCP'nin ölçümü, bu dokümanların kullanıcıya ulaşma süresini ölçer. Bu sürenin kısa olması için neler gerekli?
+
+- Sunucunun hızlı olması
+- Sunucunun kullanıcıya yakın olması
+- Gönderilen dokümanların boyutunun küçük olması
+
+Bu maddeler nasıl sağlanır?
+
+#### Sunucunun Hızlı Olması
+
+- Sunucunun fiziksel özelliklerini *istisnai durumlara hazırlıklı olarak* web uygulamasının ihtiyacına göre yapılandırın.
+
+> Pizza taşımak için tır, masa taşımak için bisiklet kullanmayın. İhtiyaçlarınıza uygun bir sunucu tercih edin.
+
+- Sunucunuzda gereksiz işlemler gerçekleştirmeyin.
+
+> Yapmanız için bir gereklilik yoksa basit bir `index.html` dosyası için veri tabanına istek atmak zorunda değilsiniz.
+
+#### Küçük Dokümanlar
+
+- Javascript ve CSS dosyalarınızın boyutlarını **minifier** araçları kullanarak küçültün.
+- Dosyalarınızı **gzip** gibi sıkıştırma araçları kullanarak sıkıştırın.
+- Resimlerinizi **WebP** formatına dönüştürün.
