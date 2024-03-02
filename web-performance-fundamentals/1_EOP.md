@@ -129,6 +129,8 @@ console.log(navigationTiming);
 
 ![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
 
+> Görsel [MDN](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance) adresinden alınmıştır.
+
 ```json
 [
   ...
@@ -160,8 +162,6 @@ console.log(navigationTiming);
 ```
 
 > **Performance API**'nin sunduğu veriler, tarayıcıların performans verileri olduğu için tarayıcıya bağlı olarak değişiklik gösterebilir.
-
-> Görsel [MDN](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance) adresinden alınmıştır.
 
 ## 4. Metriklerin İyileştirilmesi
 
@@ -259,3 +259,13 @@ Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kulla
   ![Defer](script-defer.svg)
 
 > Görseller [Growing With The Web](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) adresinden alınmıştır.
+
+- Tüm bunlara ek olarak script etiketlerinin sayfanın sonunda kullanılması, script dosyasının daha geç yüklenmeye başlamasına ve sayfa yükleme işleminin başlangıcındaki yükün azlatılmasına yardımcı olur.
+
+#### Resimlerinizi Optimize Etmek
+
+- `<img>` etiketlerinde `loading="lazy"` özelliğini kullanarak resimlerin yüklenmeye başlama süresini erteleyebilirsiniz. Bu sayede ilk açılışta görülmeyen resimlerin yüklenme süresi daha sonra başlanmak üzere ertelenir.
+
+  ```html
+  <img src="image.jpg" loading="lazy" alt="Image">
+  ```
