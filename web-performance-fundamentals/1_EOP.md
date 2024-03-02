@@ -57,9 +57,11 @@ Bu yüzden günümüzde bu metrik terk edilerek yerine **Google**'ın geliştird
 
 ### Lighthouse
 
-- **Lighthouse**, web uygulamalarının performansını ölçmek için kullanılan tarayıcının geliştirici konsolunda çalışan bir araçtır. **Google** tarafından geliştirilmiştir. **Lighthouse**'un sunduğu raporlar sayesinde web uygulamalarının performansını ölçebilir ve performansı artırmak için neler yapmanız gerektiğini öğrenebilirsiniz.
-- Dikkat edilmesi gereken ilk şey Lighthouse çalıştırılırken geliştirici konsolunun ekran boyutunu küçültecek şekilde tarayıcıya bağlı olmamasıdır. Küçük ekranda çalıştırılan Lighthouse, o boyuttaki bir sayfanın performansını ölçer.
-- Alınan raporlardaki metrikler kullanılan bilgisayar ve internet'in performansına göre değişiklik gösterebilir. Bu yüzden raporları alırken farklı cihazlarda ve farklı internet hızlarında da test etmek faydalı olacaktır.
+![Lighthouse](https://developers.google.com/web/tools/lighthouse/images/lighthouse-logo.svg)
+
+- **Lighthouse**, **Google** tarafından geliştirilmiş olan web uygulamalarının performansını ölçmek için kullanılan bir araçtır. Tarayıcının geliştirici konsolunda çalışır. Sunduğu raporlar sayesinde web uygulamalarının performansı ölçülebilir ve performansın arttırılması için neler yapılması gerektiğini öğrenilebilir.
+- Dikkat edilmesi gereken ilk şey Lighthouse çalıştırılırken geliştirici konsolunun ekran boyutunu küçültecek şekilde tarayıcıya bağlı olmamasıdır. Küçük bir sayfada çalıştırılan Lighthouse, o boyuttaki bir sayfanın performansını ölçer.
+- Alınan raporlardaki metrikler, kullanılan bilgisayar ve sahip olunan internetin performansına göre değişiklik gösterebilir. Bu yüzden raporları alırken farklı cihazlarda ve farklı internet hızlarında test etmek faydalı olacaktır.
 
 ## 2. Metrikler
 
@@ -69,7 +71,9 @@ Bu yüzden günümüzde bu metrik terk edilerek yerine **Google**'ın geliştird
 
 Yukarıda bahsedilen **Web Vitals** testleri aslında laboratuvar ortamında yapılan bir testtir. Bu testler, kullanıcıların gerçek dünyada yaşadığı deneyimi tam olarak yansıtmaz.
 
-**Lighthouse**'un sunduğu raporlar da laboratuvar ortamında yapılan testlerin sonuçlarıdır.
+- **Lighthouse**'un sunduğu raporlar da laboratuvar ortamında yapılan testlerin sonuçlarıdır.
+
+  ![Lighthouse](https://raw.githubusercontent.com/GoogleChrome/lighthouse/443ff2c8a297dfd2297dfaca86c4966a87c8574a/assets/example_audit.png)
 
 #### Test Sunucuları Üzerinde
 
@@ -81,21 +85,23 @@ Bu testlerde kullanıcıların gerçek dünyada yaşadığı deneyimi tam olarak
 
 #### Gerçek Kullanıcıların Cihazlarında
 
-Gerçek kullanıcılarla yapılan testler ise **Real User Monitoring (RUM)** ile yapılır. Bu testlerde kullanıcıların gerçek dünyada yaşadığı deneyim tam olarak yansıtılır. Bu testlerin sonuçları laboratuvar ortamında yapılan testlerden ve yapay verilerle yapılan testlerden daha gerçekçi sonuçlar verir.
+Gerçek kullanıcılarla yapılan testler ise **Real User Monitoring (RUM)** araçları ile yapılır. Bu testlerde kullanıcıların gerçek dünyada yaşadığı deneyimler ölçülür. Bu testlerin sonuçları laboratuvar ortamında yapılan testlerden ve yapay verilerle yapılan testlerden daha gerçekçi sonuçlar verir.
 
-Bu testlerde kullanıcılardan alınan verilerin konum, cihaz, tarayıcı, internet hızı gibi bilgileri dikkate alınarak sınıflandırılması gerekmektedir. Bu sınıflandırmalar hedef kitlenizi belirlemenizde ve kitlenize uygun çözümler sunabilmenizde size yardımcı olacaktır.
+Bu testlerde kullanıcılardan alınan verilerin konum, cihaz, tarayıcı, internet hızı gibi bilgiler dikkate alınarak sınıflandırılması gerekmektedir. Bu sınıflandırmalar hedef kitlesinin belirlenmesinde ve kitleye uygun çözümler sunulmasında yardımcı olur.
 
 > **Google**'ın sağladığı [**web.dev**](https://web.dev/) adresinden, web performansı ve **Core Web Vitals** ile ilgili bir çok bilgiye ulaşabilirsiniz.
 
 ### Verileri Yorumlamak
 
-Performans veri setinizi yorumlarken önemli olan kriter ortalamalar değil, dağılımlardır. Yani skorlarınızın ortalamasının iyi olması, kullanıcılarınızın genelinin deneyiminin iyi olduğu anlamına gelmez. Önemli olan, skorlarınızın dağılımının iyi olmasıdır.
+Performans veri seti yorumlanırken önemli olan kriter ortalama değil, dağılımlardır. Skor ortalamasının iyi olması, kullanıcıların genelinin iyi bir deneyim yaşadığı anlamına gelmez. Önemli olan skor dağılımının iyi olmasıdır.
 
-> Örneğin kullanıcılarınızın çeyreği çok iyi bir performans gözlemlerken kalanı yeterli bir performans gözlemleyemiyorsa, ortalama değeriniz yüksek olduğu halde kullanıcılarınızın çoğunluğu iyi bir deneyim yaşamıyor demektir.  
+> Örneğin kullanıcılarınızın çeyreği çok iyi bir performans gözlemlerken kalanı yeterli bir performans gözlemleyemiyorsa, ortalama değeriniz yüksek olduğu halde kullanıcılarınızın çoğunluğu iyi bir deneyim yaşamadığı anlamına gelir.  
 
-Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** ifade eder. Yani veri setinizdeki değerlerin yarısı medyan değerinden küçük, yarısı medyan değerinden büyüktür. Google'ın dikkat ettiği yer ise %75'lik dilimdir. Veri setinizin %75'lik dilimi iyi bir performans gösteriyorsa, kullanıcılarınızın çoğunluğunun iyi bir deneyim yaşadığını söyleyebilirsiniz.
+Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** ifade eder. Yani veri setinizdeki değerlerin yarısı medyan değerinden küçük, yarısı medyan değerinden büyüktür.
 
-> %95'lik dilimin dışında kalan veriler en kötü deneyimi yaşayan %5'lik dilimi temsil eder. Bu dilimdeki kullanıcılarınızın deneyimini iyileştirmek çok zordur. Bu dilimi hedef almak mantıklı bir strateji olmayabilir.
+Google'ın dikkat ettiği bölge ise %75'lik dilimdir. Bu dilim iyi bir performans gösteriyorsa, kullanıcıların çoğunluğunun iyi bir deneyim yaşadığı söylenebilir.
+
+> %95'lik dilimin dışında kalan veriler en kötü deneyimi yaşayan %5'lik dilimi temsil eder. Bu dilimdeki kullanıcılarınızın deneyimini iyileştirmek çok zordur. Bu dilimi hedef almak optimal bir strateji olmayabilir.
 
 ## 3. Performansı İyileştirmek
 
@@ -110,7 +116,7 @@ Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** i
 
 ### Performance API
 
-**Performance API**, tarayıcıların performans verilerine erişmek için kullanılan bir API'dir. Bu API sayesinde tarayıcıların performans verilerine erişebilir ve bu verileri kullanarak performansı ölçebilirsiniz.
+**Performance API**, tarayıcıların performans verilerine erişmek için kullanılan bir API'dir. Bu API sayesinde tarayıcıların performans verilerine erişebilir ve bu verileri kullanarak performans ölçülebilir.
 
 > MDN'de [**Performance API**](https://developer.mozilla.org/en-US/docs/Web/API/Performance) hakkında daha fazla bilgi bulabilirsiniz.
 
@@ -120,6 +126,8 @@ const performance = window.performance;
 const navigationTiming = performance.getEntries();
 console.log(navigationTiming);
 ```
+
+![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
 
 ```json
 [
@@ -153,47 +161,43 @@ console.log(navigationTiming);
 
 > **Performance API**'nin sunduğu veriler, tarayıcıların performans verileri olduğu için tarayıcıya bağlı olarak değişiklik gösterebilir.
 
-### Bir HTTP Request Diyagramı
-
-![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
+> Görsel [MDN](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance) adresinden alınmıştır.
 
 ## 4. Metriklerin İyileştirilmesi
 
 ### FCP (First Contentful Paint)
 
-Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir takım dokümanlar var. FCP'nin ölçümü, bu dokümanların kullanıcıya ulaşma süresini ölçer. Bu sürenin kısa olması için neler gerekli?
+Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir takım dokümanlar var. FCP'nin ölçümü, bu dokümanların kullanıcıya ulaşma süresini ölçer.
 
 - Sunucunun hızlı olması
 - Sunucunun kullanıcıya yakın olması
 - Gönderilen dokümanların boyutunun küçük olması
 
-Bu maddeler nasıl sağlanır?
-
 #### Sunucunun Hızlı Olması
 
-- Sunucunun fiziksel özelliklerini *istisnai durumlara hazırlıklı olarak* web uygulamasının ihtiyacına göre yapılandırın.
+- Sunucunun fiziksel özellikleri *istisnai durumlar dikkate alınarak* web uygulamasının ihtiyacına göre yapılandırılması.
 
-> Pizza taşımak için tır, masa taşımak için bisiklet kullanmayın. İhtiyaçlarınıza uygun bir sunucu tercih edin.
+  > Pizza taşımak için tır, masa taşımak için bisiklet kullanmayın. İhtiyaçlarınıza uygun bir sunucu tercih edin.
 
-- Sunucunuzda gereksiz işlemler gerçekleştirmeyin.
+- Sunucuda kullanıcıya gönderilecek cevabı geciktirecek işlemler yapmaktan kaçınılması.
 
-> Yapmanız için bir gereklilik yoksa basit bir `index.html` dosyası için veri tabanına istek atmak zorunda değilsiniz.
+  > Yapmanız için bir gereklilik yoksa basit bir `index.html` dosyası için veri tabanına istek atmak zorunda değilsiniz.
 
 #### Küçük Dokümanlar
 
-- Javascript ve CSS dosyalarınızın boyutlarını **CSS minify** ve **JS Minify** araçları kullanarak küçültün.
+- Javascript ve CSS dosyalarının boyutları **CSS minify** ve **JS Minify** araçları kullanılarak küçültülmesi.
 
-> **Rollup**, **Webpack**, **Turbopack** ve **TailwindCSS** gibi araçlar, bu işlemi otomatik olarak yapar.
+  > **Rollup**, **Webpack**, **Turbopack** ve **TailwindCSS** gibi araçlar, bu işlemi otomatik olarak yapar.
 
-- Dosyalarınızı **gzip** gibi sıkıştırma araçları kullanarak sıkıştırın.
+- Dokümanların **gzip** gibi sıkıştırma araçları kullanarak sıkıştırılması.
 
-> **Nginx** ve **Apache** gibi sunucuların ayarlarını configure ederek bu işlemi otomatik olarak yapılabilir.
+  > **Nginx** ve **Apache** gibi sunucuların ayarlarını configure ederek bu işlemi otomatik olarak yapılabilir.
 
-- Resimlerinizi **WebP** formatına dönüştürün.
+- Resimleri **WebP** gibi sıkıştırılmış formatlara dönüştürülerek boyutlarının düşürülmesi.
 
 #### Sunucunun Kullanıcıya Yakın Olması
 
-- Uygulamanın Dünya'nın farklı yerlerinden erişmeye çalışan kullanıcılarınız varsa, **CDN (Content Delivery Network)** kullanarak sunucunun kullanıcıya yakın olmasını sağlayın.
+- Uygulamaya Dünya'nın farklı yerlerinden erişmeye çalışan kullanıcılar için **CDN (Content Delivery Network)** hizmetleri kullanılarak kullanıcının kendisine yakın sunucudan veri almasının sağlanması.
 
 > **CDN**'ler, sunucunuzda bulunan dokümanları dünya üzerinde farklı noktalardaki sunuculara kopyalayarak, kullanıcının dokümanlara daha hızlı ulaşmasını sağlar.
 > Örnek olarak **Cloudflare**, **Fastly** ve **Akamai** gibi servisler kullanılabilir.
