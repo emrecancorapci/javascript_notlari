@@ -201,3 +201,61 @@ Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir ta
 
 > **CDN**'ler, sunucunuzda bulunan dokümanları dünya üzerinde farklı noktalardaki sunuculara kopyalayarak, kullanıcının dokümanlara daha hızlı ulaşmasını sağlar.
 > Örnek olarak **Cloudflare**, **Fastly** ve **Akamai** gibi servisler kullanılabilir.
+
+### LCP (Largest Contentful Paint)
+
+Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer.
+
+- Kaynakları yüklemeyi ertelemek
+- Resimlerinizi optimize etmek
+- HTTP isteklerinizi küçültmek
+
+#### Kaynakları Yüklemeyi Ertelemek
+
+Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kullanıcı etkileşime geçmeden önce gözükmeyen, görünmesi için sayfanın kaydırılması gereken içerikler olabilir. Bu içeriklerin yüklenmesini erteleyerek ***-lazy loading-***, sayfa üzerindeki en büyük içeriğin yüklenme süresini kısaltabilirsiniz.
+
+- Önceliği olmayan Javascript dosyalarının **async** veya **defer** etiketleri kullanılarak ertelenmesi başlangıçta yüklenmesi gereken dosya sayısını azaltarak önemli dosyaların daha hızlı yüklenmesini sağlar.
+
+  ```html
+  <p>Script tag'inden önce</p>
+
+  <script src="script.js"></script>
+
+  <!-- Bu satır script dosyası yüklenene kadar gözükmez -->
+  <p>Script tag'inden sonra</p>
+  ```
+
+  ![Script](script.svg)
+
+> - Yeşil HTML parse edilmesi
+> - Mavi javascript dosyasının indirilmesi
+> - Kırmızı javascript dosyasının çalıştırılması
+> - Gri HTML parse işleminin duraklatılmasıdır
+
+- **async** etiketi ile yüklenen dosyalar hızlı şekilde indirilir ve indirme işlemi tamamlandığında çalıştırılır. Fakat bu dosyaların yüklenme sırası garanti edilemez.
+
+  ```html
+  <p> Script tag'inden önce </p>
+
+  <script async src="script.js"></script>
+
+  <!-- Bu satır script dosyasını beklemeden görünür hale gelecektir-->
+  <p> Script tag'inden sonra </p>
+  ```
+
+  ![Async](script-async.svg)
+
+- **defer** etiketi ile yüklenen dosyalar hızlı şekilde indirilir ve tüm sayfanın yüklenme işlemi tamamlandıktan sonra çalıştırılır.
+
+  ```html
+  <p> Script tag'inden önce </p>
+
+  <script defer src="script.js"></script>
+
+  <!-- Bu satır script dosyasını beklemeden görünür hale gelecektir-->
+  <p> Script tag'inden sonra </p>
+  ```
+
+  ![Defer](script-defer.svg)
+
+> Görseller [Growing With The Web](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) adresinden alınmıştır.
