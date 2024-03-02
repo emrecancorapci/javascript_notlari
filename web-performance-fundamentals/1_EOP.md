@@ -114,7 +114,6 @@ Burada medyan devreye girer. **Medyan (p50)**, veri setindeki **orta değeri** i
 
 > MDN'de [**Performance API**](https://developer.mozilla.org/en-US/docs/Web/API/Performance) hakkında daha fazla bilgi bulabilirsiniz.
 
-
 ```javascript
 const performance = window.performance;
 
@@ -123,7 +122,6 @@ console.log(navigationTiming);
 ```
 
 ```json
-
 [
   ...
   {
@@ -183,6 +181,19 @@ Bu maddeler nasıl sağlanır?
 
 #### Küçük Dokümanlar
 
-- Javascript ve CSS dosyalarınızın boyutlarını **minifier** araçları kullanarak küçültün.
+- Javascript ve CSS dosyalarınızın boyutlarını **CSS minify** ve **JS Minify** araçları kullanarak küçültün.
+
+> **Rollup**, **Webpack**, **Turbopack** ve **TailwindCSS** gibi araçlar, bu işlemi otomatik olarak yapar.
+
 - Dosyalarınızı **gzip** gibi sıkıştırma araçları kullanarak sıkıştırın.
+
+> **Nginx** ve **Apache** gibi sunucuların ayarlarını configure ederek bu işlemi otomatik olarak yapılabilir.
+
 - Resimlerinizi **WebP** formatına dönüştürün.
+
+#### Sunucunun Kullanıcıya Yakın Olması
+
+- Uygulamanın Dünya'nın farklı yerlerinden erişmeye çalışan kullanıcılarınız varsa, **CDN (Content Delivery Network)** kullanarak sunucunun kullanıcıya yakın olmasını sağlayın.
+
+> **CDN**'ler, sunucunuzda bulunan dokümanları dünya üzerinde farklı noktalardaki sunuculara kopyalayarak, kullanıcının dokümanlara daha hızlı ulaşmasını sağlar.
+> Örnek olarak **Cloudflare**, **Fastly** ve **Akamai** gibi servisler kullanılabilir.
