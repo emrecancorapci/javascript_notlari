@@ -204,13 +204,13 @@ Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir ta
 
 ### LCP (Largest Contentful Paint)
 
-Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer.
+Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer. LCP skorunu iyileştirmek için yapılacaklar:
 
-- Kaynakları yüklemeyi ertelemek
-- Resimlerinizi optimize etmek
-- HTTP isteklerinizi küçültmek
+- Kaynakları yüklemenin ertelenmesi
+- Görsellerin optimize edilmesi
+- HTTP isteklerinin küçültülmesi
 
-#### Kaynakları Yüklemeyi Ertelemek
+#### Kaynakları Yüklemenin Ertelenmesi
 
 Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kullanıcı etkileşime geçmeden önce gözükmeyen, görünmesi için sayfanın kaydırılması gereken içerikler olabilir. Bu içeriklerin yüklenmesini erteleyerek ***-lazy loading-***, sayfa üzerindeki en büyük içeriğin yüklenme süresini kısaltabilirsiniz.
 
@@ -260,11 +260,13 @@ Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kulla
 
 > Görseller [Growing With The Web](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) adresinden alınmıştır.
 
-- Tüm bunlara ek olarak script etiketlerinin sayfanın sonunda kullanılması, script dosyasının daha geç yüklenmeye başlamasına ve sayfa yükleme işleminin başlangıcındaki yükün azlatılmasına yardımcı olur.
+- Tüm bunlara ek olarak script etiketlerinin sayfanın sonunda kullanılması, script dosyasının daha geç yüklenmeye başlamasına ve sayfa yükleme işleminin başlangıcındaki yükün azalmasına yardımcı olur.
 
-#### Resimlerinizi Optimize Etmek
+#### Resimlerin Optimize Edilmesi
 
-- `<img>` etiketlerinde `loading="lazy"` özelliğini kullanarak resimlerin yüklenmeye başlama süresini erteleyebilirsiniz. Bu sayede ilk açılışta görülmeyen resimlerin yüklenme süresi daha sonra başlanmak üzere ertelenir.
+Resimler LCP skorunu etkileyen en önemli faktörlerden biridir. Resimlerin optimize edilmesi, LCP skorunun iyileştirilmesi için en etkili yöntemlerden biridir.
+
+- `<img>` etiketlerinde `loading="lazy"` özelliğinin kullanılması resimlerin yüklenmeye başlama süresini erteleyebilir. Bu sayede ilk açılışta görünürde olmayan resimler daha sonra indirilmek üzere ertelenir.
 
   ```html
   <img src="image.jpg" loading="lazy" alt="Image">
