@@ -127,7 +127,7 @@ const navigationTiming = performance.getEntries();
 console.log(navigationTiming);
 ```
 
-![Diagram of a HTTP Request](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance/navigationtimingapi.jpg)
+![Diagram of a HTTP Request](assets/diagram_of_a_http_request.png)
 
 > Görsel [MDN](https://developer.mozilla.org/en-US/docs/Learn/Performance/Measuring_performance) adresinden alınmıştır.
 
@@ -225,7 +225,7 @@ Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kulla
   <p>Script tag'inden sonra</p>
   ```
 
-  ![Script](script.svg)
+  ![Script](assets/script.svg)
 
 > - Yeşil HTML parse edilmesi
 > - Mavi javascript dosyasının indirilmesi
@@ -243,7 +243,7 @@ Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kulla
   <p> Script tag'inden sonra </p>
   ```
 
-  ![Async](script-async.svg)
+  ![Async](assets/script-async.svg)
 
 - **defer** etiketi ile yüklenen dosyalar hızlı şekilde indirilir ve tüm sayfanın yüklenme işlemi tamamlandıktan sonra çalıştırılır.
 
@@ -256,7 +256,7 @@ Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kulla
   <p> Script tag'inden sonra </p>
   ```
 
-  ![Defer](script-defer.svg)
+  ![Defer](assets/script-defer.svg)
 
 > Görseller [Growing With The Web](https://www.growingwiththeweb.com/2014/02/async-vs-defer-attributes.html) adresinden alınmıştır.
 
