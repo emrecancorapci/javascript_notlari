@@ -271,3 +271,48 @@ Resimler LCP skorunu etkileyen en önemli faktörlerden biridir. Resimlerin opti
   ```html
   <img src="image.jpg" loading="lazy" alt="Image">
   ```
+
+- Yüksek çözünürlüklü görsellerin her cihazda yüksek kalitede yüklenmesi gerekli değildir. 1200px genişliğinde olan bir görselin 300px genişliğinde bir ekranda yüksek çözünürlüklü olması daha fazla veri indirilmesine sebep olur. Bu yüzden `srcset` özelliği kullanılarak farklı çözünürlükteki görsellerin yüklenmesi sağlanabilir.
+
+- Tarayıcı ilk olarak `sizes` özelliğini ardından `srcset` özelliğini okur. `sizes` özelliği, görselin hangi boyutta yüklenmesi gerektiğini belirtir. `srcset` özelliği ise görselin hangi çözünürlükte yükleneceğini belirtir.
+
+  ```html
+  <img src="image-1200.jpg"
+    srcset="image-300.jpg 300w,
+            image-600.jpg 600w,
+            image-1200.jpg 1200w"
+    sizes="(max-width: 300px) 300px,
+           (max-width: 600px) 600px,
+           1200px"
+    >
+
+  <!-- veya -->
+
+  <picture>
+    <source media="(max-width: 300px)" srcset="image-300.jpg">
+    <source media="(max-width: 600px)" srcset="image-600.jpg">
+    <img src="image-1200.jpg">
+  </picture>
+  ```
+
+- Görseldeki metadata bilgilerinin silinmesi, içerisinde bulunan gereksiz verileri temizleyecek ve görselin boyutunu küçültecektir.
+
+#### HTTP İsteklerinin Küçültmesi
+
+HTTP isteklerinin fazla olması hem kullanıcı hem de sunucu tarafında performans kaybına sebep olur. Bu yüzden sayfa üzerindeki istek sayısını azaltmak, LCP skorunun iyileştirilmesi için önemli bir adımdır.
+
+- Görsel ve javascript gibi kaynaklar HTTP/1.1 protokolü ile tek tek gönderilir. **HTTP/2** protokolü, *tek bir TCP bağlantısı üzerinden* birden fazla isteğin gönderilmesine olanak sağlar. Bu sayede sayfa üzerindeki istek sayısı azalır ve sayfa yükleme süresi kısalır. Protokolün kullanılabilmesi için sunucu ve kullanılan tarayıcıların bu protokolü desteklemesi ve sunucunun **HTTPS** protokolü ile çalışması gerekmektedir.
+
+> **HTTP/1.1** protokolü ile gönderilen **her bir istek için ayrı bir TCP bağlantısı** kurulur ve bu bağlantıların **her biri için yeni bir TLS el sıkışması** gerçekleşir. Bu durum, sayfa üzerindeki istek sayısının artmasına ve sayfa yükleme süresinin uzamasına sebep olur.
+
+- **Cache** kullanımı, sayfa üzerindeki istek sayısını azaltarak sayfa yükleme süresini kısaltır. Tarayıcı, daha önce ziyaret edilen bir sayfanın içeriğini tekrar istemek yerine, bu içeriği yerelde saklayarak tekrar kullanabilir. Bu sayede sunucuya yapılan istek sayısı azalır ve sayfa yükleme süresi kısalır.
+
+> **Cache** işlemi sadece tekrar kullanılabilir statik (*tüm kullanıcılarda aynı*) kaynaklar için uygulanabilir. Kaynaklar için sunucudan cevap alındığında cevap header'ında `cache-control`, `expires` ve `etag` gibi çeşitli bilgiler bulunur. `cache-control` tarayıcının kaynağı ne kadar süre saklayabileceğini belirtir. Eğer süre yerine net bir tarih vermek istiyorsanız `expires` ile cache'in son kullanma tarihini belirlenebilir. `etag` bilgisi ise kaynağın değişip değişmediğinin kontrol edilebilmesini sağlar.
+
+- **Pre-Loading** yöntemleri ile sayfadaki kaynakların yükleme zamanına müdahale edebilirsiniz. `<head>` etiketi içerisindeki `<link>` bağlantılarında `rel="preconnect` özelliği kullanıldığında bağlantı kurulacak bir sunucu önceden belirtilerek sunucu ile daha erken bağlantı kurulması sağlanabilir. Aynı şekilde `<link>` etiketlerinde `rel="preload"` özelliği kullanılarak sayfa yüklendiğinde öncelikle yüklenmesi gereken kaynaklar belirtilebilir.
+
+  ```html
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link rel="preload" href="/icons.css">
+  <link rel="preload" href="/img/tree.jpg" as="image">
+  ```
