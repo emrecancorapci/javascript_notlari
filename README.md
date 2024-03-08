@@ -13,3 +13,4 @@ Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklan
 ## Kurslar
 
 - [Deep JavaScript Foundations, v3](./deep-js-foundations/README.md)
+- [Web Performance Fundamentals](./web-performance-fundamentals/README.md)
