@@ -204,7 +204,7 @@ Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir ta
 
 ### LCP (Largest Contentful Paint)
 
-Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer. LCP skorunu iyileştirmek için yapılacaklar:
+Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer. LCP skorunu iyileştirmek için yapılabilecek bazı adımlar şunlardır:
 
 - Kaynakları yüklemenin ertelenmesi
 - Görsellerin optimize edilmesi
@@ -316,3 +316,29 @@ HTTP isteklerinin fazla olması hem kullanıcı hem de sunucu tarafında perform
   <link rel="preload" href="/icons.css">
   <link rel="preload" href="/img/tree.jpg" as="image">
   ```
+
+### CLS (Cumulative Layout Shift)
+
+Bir web sayfası açılmaya başladığında daha geç yüklenmesiyle sayfadaki diğer öğelerin konumları değişir. Bu durum, kullanıcıların sayfa üzerindeki içeriklere tıklamasını zorlaştırır ve kullanıcı deneyimini olumsuz etkiler. Bu değişiklikleri ölçmek için **CLS** metriği kullanılır. Bu skoru iyileştirmek için yapılabilecek bazı adımlar şunlardır:
+
+- Resimlerin boyutlarının belirtilmesi
+
+> Resimlerin boyutları belirtilmediğinde tarayıcı, resim yüklenene kadar hiçbir şey göstermez. Bu yüzden resim yüklendiğinde sayfa üzerindeki diğer öğelerin konumları değişir. Resimlerin boyutlarının belirtilmesi, tarayıcının resim yüklenene kadar resim yerine yer tutucu koyarak sayfa üzerindeki diğer öğelerin konumlarını değiştirmesini engeller.
+
+- Skeleton ekranlar kullanılması
+
+> Skeleton ekranlar, sayfa üzerindeki içeriklerin yüklenmesi sırasında kullanıcıya gösterilen geçici ekranlardır. Bu ekranlar, sayfada gerekli olan içeriklerin yüklenmesi sırasında kullanıcıya gösterilir ve sayfa üzerindeki diğer öğelerin konumlarının değişmesini engeller. Gerekli içerikler yüklendikten sonra skeleton ekranlar kaldırılır ve sayfa üzerindeki içerikler kullanıcıya gösterilir.
+
+![Skeleton Screen](assets/skeleton-screen.png)
+
+> *Facebook Skeleton Screen*
+
+### FID (First Input Delay)
+
+Bir web sayfası açıldığında kullanıcı tarafından yapılan ilk etkileşim ile tarayıcı tarafından yapılan ilk işlem arasındaki süreyi ölçer. Bu sürenin uzun olması, kullanıcıların sayfa üzerindeki içeriklerle etkileşime geçmek için uzun süre beklemek zorunda kaldığını gösterir.
+
+Javascript dosyaları web uygulamasının karmaşıklığına bağlı olarak büyüyebilir. Figma gibi bir uygulamada uzun yükleme süreleri kabul edilebilirken, bir blog sayfasında uzun yükleme süreleri kullanıcıları rahatsız edebilir. Bu yüzden söylenebilir ki **FID** kullanıcıların beklentilerine göre değişmektedir.
+
+Burada dikkat edilmesi gereken bir diğer nokta **LCP** değeridir. Daha önce belirtildiği gibi LCP tamamlandığında kullanıcı sayfanın yüklendiği hissine kapılır. Sayfanın yüklendiğini hisseden kullanıcı sayfayla etkileşime geçemezse bu durum kullanıcı deneyimini olumsuz etkileyecektir.
+
+Bu yüzden **FID** değerini iyileştirmek için yapılacak adımlar önce **LCP** değerini iyileştirmekle başlar. Eğer kullanıcı deneyimi de iyileştirilmek isteniyorsa yapılması gereken şey ***önemli olmayan javascript dosyalarının yüklenme sürelerini ertelemektir***.
