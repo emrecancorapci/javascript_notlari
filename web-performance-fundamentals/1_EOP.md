@@ -342,3 +342,37 @@ Javascript dosyaları web uygulamasının karmaşıklığına bağlı olarak bü
 Burada dikkat edilmesi gereken bir diğer nokta **LCP** değeridir. Daha önce belirtildiği gibi LCP tamamlandığında kullanıcı sayfanın yüklendiği hissine kapılır. Sayfanın yüklendiğini hisseden kullanıcı sayfayla etkileşime geçemezse bu durum kullanıcı deneyimini olumsuz etkileyecektir.
 
 Bu yüzden **FID** değerini iyileştirmek için yapılacak adımlar önce **LCP** değerini iyileştirmekle başlar. Eğer kullanıcı deneyimi de iyileştirilmek isteniyorsa yapılması gereken şey ***önemli olmayan javascript dosyalarının yüklenme sürelerini ertelemektir***.
+
+## 5. Performansın Planlanması
+
+Performans iyileştirmeleri uygulama tamamlandıktan sonra yapılacak bir işlem değil, uygulama geliştirilirken yapılması gereken bir işlem olarak görülmelidir. Aksi takdirde performans iyileştirmesi yapmak, uygulama geliştirilirken yapmaktan çok daha zorlayıcı olabilir.
+
+Bu yüzden uygulamada geliştirilirken güvenlik ve kalite gibi konularda bir standart oluşturulduğu gibi performans konusunda da bir standart oluşturulmalıdır. Bu standartlara bağlı kalınması uygulamanın mevcut performansını korumak ve gelecekte yapılacak performans iyileştirmelerini kolaylaştırmak için önemlidir.
+
+### Performans Bütçesi
+
+Performans bütçesi belirlenirken dikkat edilmesi gereken en önemli konu, bütçenin ihtiyaçlara, kaynaklara ve hedeflere uygun olmasıdır. Bütçe belirlenirken dikkat edilmesi gereken bazı kriterler:
+
+1. Hedef kitlenin kim olduğu
+
+  > Yaş aralığı, cinsiyet, gelir durumu, eğitim durumu, teknolojiye olan ilgi durumu gibi kriterler hedef kitlenin belirlenmesinde önemlidir.
+
+2. Hangi cihazları kullandığı
+
+  > İşletim sistemi, tarayıcı, ekran boyutu, ekran çözünürlüğü, internet hızı, cihazın performansı gibi kriterler hedef kitlenin cihazlarını belirlemede önemlidir.
+
+3. Ne kadar beklemeye tahammül edebileceği
+
+  > Bilet satışı yapan bir uygulama için kullanıcılar beklemeye daha az tahammül edebilirken, bir blog sayfası için kullanıcılar beklemeye daha fazla tahammül edebilir.
+
+4. Ne kadar hızın onları etkileyeceği
+
+  > Popüler bir grubun konser biletlerinin satıldığı bir uygulamada kullanıcılar biletler tükenmeden hemen almak isteyecektir. Fakat bir blog sayfasında kullanıcıların içeriklere hızlı şekilde ulaşması etkileyici olmayabilir.
+
+### Performance Budget Calculator
+
+[**Performance Budget Calculator**](https://perfornancebudget.io/), performans bütçesi belirlerken dikkat edilmesi gereken kriterleri göz önünde bulundurarak performans bütçesi belirlemeye yardımcı olan bir araçtır.
+
+![Performance Budget Calculator](assets/perf-budget-calculator.png)
+
+Sayfada hedeflenen kullanıcıların internet kalitesi ve hedeflenen süre değerleri girildiğinde, bu değerlere uygun bir performans bütçesi görüntülenir. Ardından sayfa performans bütçesinin planlanabilmesi için yardımcı olacak araçlar sunar.
