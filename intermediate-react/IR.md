@@ -198,3 +198,323 @@ app.use((req, res) => {
   });
 });
 ```
+
+## Redux
+
+### Redux Toolkit Query & Middleware
+
+`postApiService.js`
+
+```js
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const postApi = createApi({
+  // The name of the slice of the store for this API
+  reducerPath: "postApi",
+  // A hook that returns the Redux store's state
+  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
+  endpoints: (builder) => ({
+    // Get all posts 
+    getPosts: builder.query({
+      query: () => ({ url: "posts" }),
+    }),
+    // Get a single post
+    getPost: builder.query({
+      query: (id) => ({ url: `posts`, params: { id } }),
+      transformResponse: (response) => response.data,
+    }),
+    // Add a new post
+    addPost: builder.mutation({
+      query: (body) => ({
+        url: "posts",
+        method: "POST",
+        body,
+      }),
+    }),
+  }),
+});
+
+export const { useGetPostsQuery, useGetPostQuery, useAddPostMutation } = postApi;
+```
+
+`createApi` fonksiyonuyla api servisi oluşturulur. `reducerPath` ile oluşturulan servise bir isim verilir. `baseQuery` ile api servisinin kullanacağı api adresi belirlenir. `endpoints` değerinde ise api servisinin kullanacağı endpointler yazılır.
+
+Bu endpointler oluşturulurken `builder` fonksiyonunun içerisindeki `query` ve `mutation` fonksiyonları kullanılır. `query` fonksiyonu ile get isteği yapılırken `mutation` fonksiyonu ile post, put, delete gibi istekler yapılır.
+
+`transformResponse` fonksiyonu ile gelen response manipüle edilebilir. Örneğin yukarıdaki örnekte `getPost` endpointi için gelen response'un içerisindeki `data` objesi alınmıştır.
+
+`store.js`
+
+```js
+import { configureStore } from "@reduxjs/toolkit";
+import { postApi } from "./postApiService";
+
+export const store = configureStore({
+  reducer: {
+    [postApi.reducerPath]: postApi.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(postApi.middleware),
+});
+```
+
+`postApi` servisi store'a *reducer* olarak eklendikten sonra `postApi.middleware` middleware'i de store'a eklenir. Bu middleware sayesinde api istekleri yapıldığında store güncellenir.
+
+> `postApi.reducerPath` olarak çağrılan kısım yazdığımız api servisindeki `reducerPath: "postApi"` değeridir. İsterseniz bu değeri kendiniz de string olarak girebilirsiniz fakat bu durumda bir tarafta değişiklik yapıldığında diğer tarafta da yapılması gerektiği unutulmamalıdır.
+
+`Details.jsx`
+
+```jsx
+import { useGetPostQuery } from "./postApiService";
+
+function Details({ id }) {
+  const { data, error, isLoading } = useGetPostQuery(id);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <p>{data.body}</p>
+    </div>
+  );
+}
+```
+
+## Testing
+
+`vitest` ve `happy-dom` kullanarak React uygulamaları test edilebilir.
+
+> Neden Happy Dom?
+>
+> Minimal bir DOM implementasyonu olduğu için daha hızlı çalışır. Yetmediği yerlerde ise `jsdom` kullanılabilir.
+
+`vite.config.js`
+
+```js
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [react()]
+  root: "src",
+  test: {
+    environment: "happy-dom",
+  }
+});
+```
+
+Test dosyalarının `__tests__` klasörü içerisinde bulundurulması `vitest`'in test dosyalarını otomatik olarak bulmasını sağlar. Başka bir klasörde de bulundurulabilir veya `*.test.js` uzantılı dosyalar da test dosyası olarak kabul edilir.
+
+`form.jsx`
+
+```jsx
+export default function Form() {
+  const [image, setImage] = useState(null);
+
+  return (<>
+    <form>
+      <input data-testid="form-input" type="text" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <img src={image}>
+    <button data-testid="img-button" type="button" onClick={() => {setImage(image === "2.png" ? '1.png' : '2.png')}}>Change Image</button>
+  </>);
+}
+```
+
+> `data-testid` attribute'u ile element test dosyasında erişilebilir hale gelir.
+
+`form.test.jsx`
+
+```jsx
+import { expect, test } from "vitest";
+import { render } from `@testing-library/react`;
+
+test("renders form", async () => {
+  const form = render(<Form />)
+
+  // Test input
+  const input = await form.getByTestId("form-input");
+  expect(input).not.toBe(null);
+  expect(input).toBeInstanceOf(HTMLInputElement);
+  expect(input).toHaveAttribute("type", "text");
+
+  // Test button
+  const button = await form.getByText("Submit");
+  expect(button).not.toBe(null);
+  expect(button).toBeInstanceOf(HTMLButtonElement);
+  expect(button).toHaveAttribute("type", "submit");
+
+  form.unmount();
+});
+
+test("submits form", async () => {
+  const form = render(<Form />)
+
+  // Test form submission
+  const submit = jest.fn();
+  form.on("submit", submit);
+  form.fire("submit");
+  expect(submit).toHaveBeenCalled();
+
+  form.unmount();
+});
+
+test("changes an image", async () => {
+  const form = render(<Form />)
+
+  // Test image change
+  // Default image
+  const img = await form.getByRole("img");
+  expect(img).not.toBe(null);
+  expect(img).toBeInstanceOf(HTMLImageElement);
+  expect(img).toHaveAttribute("src", null);
+
+  // Change image
+  const button = await form.getByTestId("img-button");
+  form.fire("click", button);
+  expect(img).toHaveAttribute("src", "2.png");
+
+  form.unmount();
+});
+```
+
+### Testing Hooks
+
+`useCounter.js`
+
+```jsx
+import { useState } from "react";
+
+export function useCounter() {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount((c) => c + 1);
+  const decrement = () => setCount((c) => c - 1);
+
+  return { count, increment, decrement };
+}
+```
+
+`useCounter.test.js`
+
+```jsx
+import { expect, test } from "vitest";
+import { renderHook, act } from "@testing-library/react-hooks";
+import { useCounter } from "./useCounter";
+import Provider from "./Provider";
+
+test("increments the counter", () => {
+  const {result} = renderHook(() => useCounter(),
+  {
+    wrapper: ({children}) => <Provider>{children}</Provider>
+  });
+
+  act(() => {
+    result.current.increment();
+  });
+
+  expect(result.current.count).toBe(1);
+});
+```
+
+### Testing Mocks
+
+Herhangi bir kütüphane kullanılmadan da mocklar oluşturulabilir. Fakat bu örnekte  `vitest-fetch-mock` kullanılmıştır.
+
+`vite.config.js`
+
+```js
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  plugins: [react()]
+  root: "src",
+  test: {
+    environment: "happy-dom",
+    setupFiles: "./setupVitest.js" // Add this line
+  }
+});
+```
+
+`setupVitest.js`
+
+```js
+import createFetchMock from "vitest-fetch-mock";
+import { vi } from "vitest";
+
+const fetchMock = createFetchMock(vi);
+fetchMock.enableMocks();
+```
+
+`useCategoryList.test.js`
+
+```js
+import { expect, test } from "vitest";
+import { renderHook, act, waitFor } from "@testing-library/react-hooks";
+import { useCategory } from "./useCategory";
+import Provider from "./Provider";
+
+test("gives back categories when given a postId", async () => {
+  const categories = [
+    "Tech",
+    "Science",
+    "Art",
+    "Music",
+    "History",
+    "Literature",
+  ];
+
+  fetch.mockResponseOnce({
+    JSON.stringify({
+      postId: 1,
+      categories
+    })
+  });
+
+  const {result} = renderHook(() => useCategory(1),
+  {
+    wrapper: ({children}) => <Provider>{children}</Provider>
+  });
+
+  await waitFor(() => {
+    expect(result.current.categories).toEqual(categories);
+  });
+});
+```
+
+### Test Coverage
+
+Kodun ne kadarının test edildiğini görmek için `vitest`'in `--coverage` flag'i kullanılabilir.
+
+`package.json`
+
+```json
+{
+  "scripts": {
+    [...]
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+    [...]
+  }
+}
+```
+
+`npm run test:coverage` komutu çalıştırıldığında test edilmeyen kodlar kırmızı, test edilen kodlar yeşil renkte gösterilir.
+
+```terminal
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+----------|---------|----------|---------|---------|-------------------
+All files |   88.89 |       50 |   83.33 |   88.89 |
+ src      |   88.89 |       50 |   83.33 |   88.89 |
+  App.jsx |   88.89 |       50 |   83.33 |   88.89 | 10
+```
+
+Ayrıca `--coverage` flag'i kullanıldığında `coverage` klasörü oluşturulur ve bu klasörde test edilen kodların detaylı raporu bulunur. Bu rapor `src\coverage\index.html` dosyasından görüntülenebilir.
