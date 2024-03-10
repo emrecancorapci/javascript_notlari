@@ -14,3 +14,4 @@ Bir yandan videoları izleyerek diğer yandan not aldığımdan dolayı notlarda
 
 - [Deep JavaScript Foundations, v3](./deep-js-foundations/README.md)
 - [Web Performance Fundamentals](./web-performance-fundamentals/README.md)
+- [Intermediate React, v5](./intermediate-react/README.md)
