@@ -161,6 +161,8 @@ console.log(navigationTiming);
 ]
 ```
 
+Yukarıdaki veriler, tarayıcı üzerindeki bir sayfanın yüklenme süresi ile ilgili verilerdir. Bu verileri kullanarak sayfa üzerindeki performansı ölçebilir ve performansı iyileştirmek için neler yapılması gerektiğini öğrenebilirsiniz.
+
 > **Performance API**'nin sunduğu veriler, tarayıcıların performans verileri olduğu için tarayıcıya bağlı olarak değişiklik gösterebilir.
 
 ## 4. Metriklerin İyileştirilmesi
@@ -204,17 +206,13 @@ Bir web sayfası açıldığında sunucudan kullanıcıya gitmesi gereken bir ta
 
 ### LCP (Largest Contentful Paint)
 
-Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer. LCP skorunu iyileştirmek için yapılabilecek bazı adımlar şunlardır:
-
-- Kaynakları yüklemenin ertelenmesi
-- Görsellerin optimize edilmesi
-- HTTP isteklerinin küçültülmesi
+Bir web sayfası açıldığında, sayfa üzerindeki yüklenme süresi en uzun olan içeriğin yüklenme süresini ölçer.
 
 #### Kaynakları Yüklemenin Ertelenmesi
 
 Sayfa üzerinde bulunan tüm içerikler hemen yüklemek zorunda değildir. Kullanıcı etkileşime geçmeden önce gözükmeyen, görünmesi için sayfanın kaydırılması gereken içerikler olabilir. Bu içeriklerin yüklenmesini erteleyerek ***-lazy loading-***, sayfa üzerindeki en büyük içeriğin yüklenme süresini kısaltabilirsiniz.
 
-- Önceliği olmayan Javascript dosyalarının **async** veya **defer** etiketleri kullanılarak ertelenmesi başlangıçta yüklenmesi gereken dosya sayısını azaltarak önemli dosyaların daha hızlı yüklenmesini sağlar.
+Önceliği olmayan Javascript dosyalarının **async** veya **defer** etiketleri kullanılarak ertelenmesi başlangıçta yüklenmesi gereken dosya sayısını azaltarak önemli dosyaların daha hızlı yüklenmesini sağlar.
 
   ```html
   <p>Script tag'inden önce</p>
@@ -321,13 +319,13 @@ HTTP isteklerinin fazla olması hem kullanıcı hem de sunucu tarafında perform
 
 Bir web sayfası açılmaya başladığında daha geç yüklenmesiyle sayfadaki diğer öğelerin konumları değişir. Bu durum, kullanıcıların sayfa üzerindeki içeriklere tıklamasını zorlaştırır ve kullanıcı deneyimini olumsuz etkiler. Bu değişiklikleri ölçmek için **CLS** metriği kullanılır. Bu skoru iyileştirmek için yapılabilecek bazı adımlar şunlardır:
 
-- Resimlerin boyutlarının belirtilmesi
+#### Resimlerin boyutlarının belirtilmesi
 
-> Resimlerin boyutları belirtilmediğinde tarayıcı, resim yüklenene kadar hiçbir şey göstermez. Bu yüzden resim yüklendiğinde sayfa üzerindeki diğer öğelerin konumları değişir. Resimlerin boyutlarının belirtilmesi, tarayıcının resim yüklenene kadar resim yerine yer tutucu koyarak sayfa üzerindeki diğer öğelerin konumlarını değiştirmesini engeller.
+Resimlerin boyutları belirtilmediğinde tarayıcı, resim yüklenene kadar hiçbir şey göstermez. Bu yüzden resim yüklendiğinde sayfa üzerindeki diğer öğelerin konumları değişir. Resimlerin boyutlarının `width` ve `height` ile belirtilmesi, tarayıcının resim yüklenene kadar resim yerine yer tutucu koyarak sayfa üzerindeki diğer öğelerin konumlarını değiştirmesini engeller.
 
-- Skeleton ekranlar kullanılması
+#### Skeleton ekranlar kullanılması
 
-> Skeleton ekranlar, sayfa üzerindeki içeriklerin yüklenmesi sırasında kullanıcıya gösterilen geçici ekranlardır. Bu ekranlar, sayfada gerekli olan içeriklerin yüklenmesi sırasında kullanıcıya gösterilir ve sayfa üzerindeki diğer öğelerin konumlarının değişmesini engeller. Gerekli içerikler yüklendikten sonra skeleton ekranlar kaldırılır ve sayfa üzerindeki içerikler kullanıcıya gösterilir.
+Skeleton ekranlar, sayfa üzerindeki içeriklerin yüklenmesi sırasında kullanıcıya gösterilen geçici ekranlardır. Bu ekranlar, sayfada gerekli olan içeriklerin yüklenmesi sırasında kullanıcıya gösterilir ve sayfa üzerindeki diğer öğelerin konumlarının değişmesini engeller. Gerekli içerikler yüklendikten sonra skeleton ekranlar kaldırılır ve sayfa üzerindeki içerikler kullanıcıya gösterilir.
 
 ![Skeleton Screen](assets/skeleton-screen.png)
 
@@ -353,21 +351,21 @@ Bu yüzden uygulamada geliştirilirken güvenlik ve kalite gibi konularda bir st
 
 Performans bütçesi belirlenirken dikkat edilmesi gereken en önemli konu, bütçenin ihtiyaçlara, kaynaklara ve hedeflere uygun olmasıdır. Bütçe belirlenirken dikkat edilmesi gereken bazı kriterler:
 
-1. Hedef kitlenin kim olduğu
+#### Hedef kitlenin kim olduğu
 
-  > Yaş aralığı, cinsiyet, gelir durumu, eğitim durumu, teknolojiye olan ilgi durumu gibi kriterler hedef kitlenin belirlenmesinde önemlidir.
+Yaş aralığı, cinsiyet, gelir durumu, eğitim durumu, teknolojiye olan ilgi durumu gibi kriterler hedef kitlenin belirlenmesinde önemlidir.
 
-2. Hangi cihazları kullandığı
+#### Hangi cihazları kullandığı
 
-  > İşletim sistemi, tarayıcı, ekran boyutu, ekran çözünürlüğü, internet hızı, cihazın performansı gibi kriterler hedef kitlenin cihazlarını belirlemede önemlidir.
+İşletim sistemi, tarayıcı, ekran boyutu, ekran çözünürlüğü, internet hızı, cihazın performansı gibi kriterler hedef kitlenin cihazlarını belirlemede önemlidir.
 
-3. Ne kadar beklemeye tahammül edebileceği
+#### Ne kadar beklemeye tahammül edebileceği
 
-  > Bilet satışı yapan bir uygulama için kullanıcılar beklemeye daha az tahammül edebilirken, bir blog sayfası için kullanıcılar beklemeye daha fazla tahammül edebilir.
+Bilet satışı yapan bir uygulama için kullanıcılar beklemeye daha az tahammül edebilirken, bir blog sayfası için kullanıcılar beklemeye daha fazla tahammül edebilir.
 
-4. Ne kadar hızın onları etkileyeceği
+#### Ne kadar hızın onları etkileyeceği
 
-  > Popüler bir grubun konser biletlerinin satıldığı bir uygulamada kullanıcılar biletler tükenmeden hemen almak isteyecektir. Fakat bir blog sayfasında kullanıcıların içeriklere hızlı şekilde ulaşması etkileyici olmayabilir.
+Popüler bir grubun konser biletlerinin satıldığı bir uygulamada kullanıcılar biletler tükenmeden hızlıca almak isteyeceğinden dolayı en hızlı yola başvuracaklardır. Fakat bir blog sayfasında içeriklere hızlı şekilde ulaşılabilmesi kullanıcılar için etkileyici olmayabilir.
 
 ### Performance Budget Calculator
 
