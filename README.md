@@ -6,9 +6,9 @@
 
 ## Kapsam
 
-Halihazırda başlangıç seviyesinde bir yazılımcı olmadığım için bu notlar temel konulardan ziyade bu konuların derin kısımlarına değinecek. Bu yüzden yazılıma yeni başladıysanız size pek uygun olmayabilir. Bu notlarda amaç daha çok Javascript'in nasıl çalıştığını anlamak.
+Halihazırda başlangıç seviyesinde bir yazılımcı olmadığım için bu notlar temel konulardan ziyade bu konuların derin kısımlarına değinecek. Bu yüzden yazılıma yeni başladıysanız size pek uygun olmayabilir.
 
-Videoları izleyerek not aldığımdan dolayı notlarda tam anlamıyla açıklanmamış veya eksik bırakılmış yerler olabilir. Bu yüzden yetersiz olduğunu düşündüğünüz yerleri issue açarak belirtirseniz elimden geldiğince açıklamaya çalışırım.
+Bir yandan videoları izleyerek diğer yandan not aldığımdan dolayı notlarda tam anlamıyla açıklanmamış veya eksik bırakılmış yerler olabilir. Kendim tekrar dönüp baktıkça eksik gördüğüm yerleri geliştirmeye çalışıyorum. Fakat gözümden kaçanlar olursa yetersiz olduğunu düşündüğünüz yerleri issue açarak belirtirseniz elimden geldiğince geliştiririm.
 
 ## Kurslar
 

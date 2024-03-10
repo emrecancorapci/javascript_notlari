@@ -2,35 +2,35 @@
 
 ## İçindekiler
 
-### 1. [Performansın Temelleri](WPT#performansın-temelleri)
+### [Performansın Temelleri](WPT#1-performansın-temelleri)
 
 - [Performans Neden Önemli?](WPT#performans-neden-önemli)
 - [Beklemenin Psikolojisi](WPT#beklemenin-psikolojisi)
 - [Web Vitals](WPT#web-vitals)
 - [Lighthouse](WPT#lighthouse)
 
-### 2. [Metrikler](WPT#metrikler)
+### [Metrikler](WPT#2-metrikler)
 
 - [Performans Nerede Ölçülür?](WPT#performans-nerede-ölçülür)
 - [Verileri Yorumlamak](WPT#verileri-yorumlamak)
 
-### 3. [Performansı İyileştirmek](WPT#performansı-iyileştirmek)
+### [Performansı İyileştirmek](WPT#3-performansı-iyileştirmek)
 
 - [Web İşletmesinin Hedefi](WPT#web-işletmesinin-hedefi)
 - [Performance API](WPT#performance-api)
 
-### 4. [Metriklerin İyileştirilmesi](WPT#metriklerin-iyileştirilmesi)
+### [Metriklerin İyileştirilmesi](WPT#4-metriklerin-iyileştirilmesi)
 
 - [FCP (First Contentful Paint)](WPT#fcp-first-contentful-paint)
 - [LCP (Largest Contentful Paint)](WPT#lcp-largest-contentful-paint)
 - [CLS (Cumulative Layout Shift)](WPT#cls-cumulative-layout-shift)
 - [FID (First Input Delay)](WPT#fid-first-input-delay)
 
-### 5. Performansın Planlanması
+### [Performansın Planlanması](WPT#5-performansın-planlanması)
 
 - [Performans Bütçesi](WPT#performans-bütçesi)
 - [Performance Budget Calculator](WPT#performance-budget-calculator)
 
 ## Kaynak
 
-[Web Performance Fundamentals](https://frontendmasters.com/courses/web-perf/)
+[Web Performance Fundamentals](https://frontendmastecom/courses/web-perf/)
