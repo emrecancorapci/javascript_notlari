@@ -4,7 +4,7 @@
 
 ### Deferred Values `useDeferredValue`
 
-Imagine you're doing a re-render of a large newsfeed of information and a user clicks on one of the side widgets that opens the top menu. What would you expect to happen. If a user caught the exact moment that the big newsfeed was re-rendering, it could cause a moment of jank: two big things are happening at the exact same. For most of us that is an acceptable risk and one we wouldn't pursue to solve any further unless it was a massive issue. For Facebook, it is a big issue. Lots of stuff is rendering and users can cause their site to feel janky with their clicking. So Facebook made transitions.
+Uygulamaların performansını artırmak için bazı durumlar için render işlemlerini ertelemek gerekebilir. Örneğin, sayfanın büyük bir kısmı render edilirken bir butona tıklanırsa, butonun tıklanma işlemi render işlemlerini yavaşlatabilir. Bu durumda `useDeferredValue` hook'u kullanılabilir. Genelde `useMemo` ile birlikte kullanılır.
 
 ```jsx
 function Main(){
@@ -21,9 +21,9 @@ function Main(){
 
 ### Transition `useTransition`
 
-We have seen how to defer lesser important updates but let's talk specifically about transition states. More often than not this is a loading state e.g. a user clicked a submit button and now we need to hit the API and wait for the API to say "here is the results". What we would have done previously (and did do in the Intro) is have a useState piece of state that keeps track of a isLoading flag.
+Bir loading ekranı göstermek için `useState` kullanılabilir fakat bu yüksek öncelikli bir işlem olduğu için en hızlı ve en kısa sürede yapılmaya çalışılır. Böyle bir hıza ihtiyaç olmadığı durumlarda `useTransition` hook'u kullanılarak render işlemleri ertelemek mümkündür.
 
-What's wrong with this? These would be all "high priority" transitions for React. Therefore, it will try to do it as fast and as soon as it can, but it ends up being not a big deal because we can defer showing a loading state until everything else is done (in the name of keeping the UI responsive). This is what useTransition is good for.
+Bu hook, `startTransition` fonksiyonu ile birlikte kullanılır ve `isPending` değeri ile render işlemlerinin ertelendiğini belirtir. Bu sayede loading ekranı göstermek için `isPending` değeri kullanılabilir.
 
 ```jsx
 function Form() {
