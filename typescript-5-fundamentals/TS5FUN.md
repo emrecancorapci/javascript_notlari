@@ -225,3 +225,213 @@ handler(new Event("click"));
 
 clickHandler.call(button, new Event("click"));
 ```
+
+## Classes
+
+```ts
+class Cube {
+  name: string;
+  x: number;
+  y: number;
+  z: number;
+
+  constructor(name:string, x: number, y: number, z: number) {
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+  scale(n: number) : void {
+    this.x *= n;
+    this.y *= n;
+    this.z *= n;
+  }
+  volume() : number {
+    return this.x * this.y * this.z;
+  }
+}
+```
+
+### Access Modifiers
+
+- `public` is the default access modifier.
+- `private` members are only accessible within the class.
+- `protected` members are accessible within the class and its subclasses.
+- These doesn't affect the generated JavaScript.
+
+```ts
+class Cylinder {
+  private name: string;
+  public r: number;
+  private h: number;
+
+  private _volume: Cube.calculateVolume(this.r, this.h);
+  public get volume(): number {
+    return this._volume;
+  }
+
+  constructor(name:string, r: number, h: number) {
+    this.name = name;
+    this.r = r;
+    this.h = h;
+  }
+
+  private static calculateVolume(r: number, h: number): number {
+    return Math.PI * r ** 2 * h;
+  }
+}
+
+const cylinder = new Cylinder("Cylinder", 1, 1);
+cylinder.name; // Error
+cylinder.r; // 1
+cylinder.volume; // 3.141592653589793
+cylinder.volume = 10; // Error
+```
+
+- Javascript now has private fields and methods. They are denoted by a `#` prefix. You can use them in Typescript by setting `target` to `es2022` in `tsconfig.json`.
+
+```ts
+class Cylinder {
+  ...
+  #volume: Cube.calculateVolume(this.r, this.h);
+  public get volume(): number {
+    return this.#volume;
+  }
+  ...
+}
+```
+
+### `readonly` Modifier
+
+- `readonly` members can only be assigned in the constructor. It doesn't affect the generated JavaScript. You can still change the value of a `readonly` member using `Object.assign` or spread operator.
+
+```ts
+class Cube {
+  readonly name: string;
+  readonly x: number;
+  readonly y: number;
+  readonly z: number;
+
+  constructor(name:string, x: number, y: number, z: number) {
+    this.name = name;
+    this.x = x;
+    this.y = y;
+    this.z = z;
+  }
+}
+```
+
+### `override` Modifier
+
+- You can use `override` modifier to explicitly state that a method is overriding a method from the base class.
+
+```ts
+class Shape {
+  draw() {
+    console.log("Drawing a shape");
+  }
+}
+
+class Circle extends Shape {
+  override draw() {
+    console.log("Drawing a circle");
+  }
+}
+```
+
+### Parameter Properties
+
+- You can use access modifiers in constructor parameters to create properties.
+
+```ts
+class Cube {
+  constructor(
+    public name: string,
+    private x: number,
+    private y: number,
+    private z: number
+  ) {}
+}
+```
+
+## Type Guards
+
+### Private Field Presence Check (Class Type Guard)
+
+- You can check if a private field is present using `in` operator.
+
+```ts
+class User {
+  ...
+  #id: number;
+  
+  equals(other: any): other is User {
+    if(other && typeof other === "object" && "#id" in other) {
+      // other is a User
+      return this.#id === other.#id;
+    }
+    return false;
+  }
+  ...
+}
+```
+
+### Custom Type Guards
+
+- You can create custom type guards using classes. Logic of the type guard function have to be created manually.
+
+```ts
+class Circle {
+  kind: "circle" = "circle";
+  radius: number;
+  constructor(radius: number) {
+    this.radius = radius;
+  }
+}
+
+class Square {
+  kind: "square" = "square";
+  sideLength: number;
+  constructor(sideLength: number) {
+    this.sideLength = sideLength;
+  }
+}
+
+function isCircle(shape: Circle | Square): shape is Circle {
+  return shape.kind === "circle";
+}
+```
+
+### Custom Type Guards with Assertion Signatures
+
+- You can create custom type guards using classes. Logic of the type guard function have to be created manually.
+
+```ts
+class Circle {
+  kind: "circle" = "circle";
+  radius: number;
+  constructor(radius: number) {
+    this.radius = radius;
+  }
+}
+
+function isCircle(shape: Circle | Square): asserts shape is Circle {
+  if (shape.kind !== "circle") {
+    throw new Error("Not a circle");
+  }
+}
+```
+
+### Narrowing with `switch(true)` (Typescript 5.3)
+
+- You can use `switch(true)` to narrow down the type of a variable.
+
+```ts
+function getArea(shape: Circle | Square) {
+  switch (true) {
+    case shape.kind === "circle":
+      return Math.PI * shape.radius ** 2;
+    case shape.kind === "square":
+      return shape.sideLength ** 2;
+  }
+}
+```
