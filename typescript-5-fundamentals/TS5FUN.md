@@ -41,3 +41,81 @@ function getArea(shape: Shape) {
   }
 }
 ```
+
+### Intersection Types
+
+- A type formed by combining multiple types into one.
+
+```ts
+type A = { a: number };
+type B = { b: string };
+type C = { c: number };
+
+type ABC = A & B & C;
+
+const abc: ABC = { a: 1, b: "not javascript", c: 3 };
+```
+
+## Interfaces and Type Aliases
+
+### Inheritance in Type Aliases
+
+- Type aliases can be extended or implemented from other types.
+
+```ts
+type SpecialDate = Date & { getDescription(): string };
+
+const piDay: SpecialDate =
+Object.assign(
+  new Date("2021-03-14"),
+  { getDescription: () => "Pi Day" }
+);
+
+piDay.getDate(); // 14
+piDay.getDescription(); // "Pi Day"
+```
+
+### Augmenting Existing Types
+
+- You can add properties to existing types using declaration merging.
+
+```ts
+interface Array<T> {
+  first(): T;
+}
+
+Array.prototype.first = function () {
+  return this[0];
+};
+
+const arr = [1, 2, 3];
+arr.first(); // 1
+```
+
+> Augmenting existing types is not recommended because it changes types globally.
+
+### Recursive Types
+
+- Types can be recursive.
+
+```ts
+type TreeNode<T> = {
+  value: T;
+  left?: TreeNode<T> ;
+  right?: TreeNode<T>;
+};
+
+const tree: TreeNode<number> = {
+  value: 1,
+  left: {
+    value: 2,
+    left: { value: 4 },
+    right: { value: 5 },
+  },
+  right: {
+    value: 3,
+    left: { value: 6 },
+    right: { value: 7 },
+  },
+};
+```
