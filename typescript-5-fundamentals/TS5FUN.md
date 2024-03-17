@@ -119,3 +119,109 @@ const tree: TreeNode<number> = {
   },
 };
 ```
+
+## Type Query, Callback and Constructable
+
+### `keyof` Operator
+
+- `keyof` operator returns a union type of all the property names of a type.
+
+```ts
+type Point = { x: number; y: number };
+type PointKey = keyof Point; // "x" | "y"
+```
+
+### Type Registry Pattern
+
+- A pattern to add properties to a type from another module.
+
+`registry.ts`
+
+```ts
+export interface DataTypeRegistry {
+  // Empty by design
+}
+
+// & is used for nicer tooltips
+export function fetchRecord(
+  arg: keyof DataTypeRegistry && string,
+  id: number
+  ) {}
+```
+
+`blog.ts`
+
+```ts
+
+export interface Blog {
+  title: string;
+  content: string;
+  edit: () => void;
+}
+
+// Everything in this block will be merged with DataTypeRegistry in registry.ts
+declare module `../registry` {
+  export interface DataTypeRegistry {
+    blog: Blog;
+  }
+}
+```
+
+### Return Types
+
+```ts
+interface TwoNumbers {
+  (a: number, b: number): number;
+}
+
+// or
+
+type TwoNumbers = (a: number, b: number) => number;
+```
+
+### Constructable
+
+- A type that represents a constructor function.
+
+```ts
+interface Constructable {
+  new(value: number): Date;
+}
+
+const DateConstructor: Constructable = Date;
+const date = new DateConstructor(2021);
+```
+
+### Function Overloads
+
+- A function can have multiple signatures.
+
+```ts
+function add(a: number, b: number): number;
+function add(a: string, b: string): string;
+function add(a: number | string, b: number | string): number | string {
+  if (typeof a === "number" && typeof b === "number") {
+    return a + b;
+  } else {
+    return a + b;
+  }
+}
+```
+
+### `this` Type
+
+- `this` type represents the type of the object that the function is bound to.
+
+```ts
+function clickHandler(this: HTMLButtonElement, event: MouseEvent) {
+  this.disabled = true;
+}
+
+const button = document.createElement("button");
+const handler = clickHandler.bind(button);
+handler(new Event("click"));
+
+// or
+
+clickHandler.call(button, new Event("click"));
+```
