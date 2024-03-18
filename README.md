@@ -16,3 +16,4 @@ Bir yandan videoları izleyerek diğer yandan not aldığımdan dolayı notlarda
 - [Web Performance Fundamentals](./web-performance-fundamentals/README.md)
 - [Intermediate React, v5](./intermediate-react/README.md)
 - [Functional JavaScript First Steps, v1](./functional-js-first-steps/README.md)
+- [TypeScript 5 Fundamentals, v4](./typescript-5-fundamentals/README.md)
