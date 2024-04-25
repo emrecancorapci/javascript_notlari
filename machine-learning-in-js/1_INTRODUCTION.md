@@ -53,7 +53,7 @@ Takviyeli öğrenmede eğitim yöntemi, istenilen davranışın ödüllendirilme
 - [ConvNetJS](http://cs.stanford.edu/people/karpathy/convnetjs/)
 - [Keras.js](https://transcranial.github.io/keras-js/)
 
-## Pre-trained Models
+## Pre-trained Models (Önceden Eğitilmiş Modeller)
 
 ### Pre-trained Models Nedir?
 
@@ -65,6 +65,22 @@ Bazı modeller Tensorflow.js'le uyumlu olabilir ve bu modelleri kullanarak kendi
 
 ### Nereden Bulunanabilir?
 
-- [Kaggle](https://www.kaggle.com/models) hatta daha spesifik olarak [Tensorflow.js Modelleri](https://www.kaggle.com/search?q=tensorflow.js+in%3Amodels)
+- [Kaggle](https://www.kaggle.com/models) daha spesifik olarak [Tensorflow.js Modelleri](https://www.kaggle.com/search?q=tensorflow.js+in%3Amodels)
 - [Github](https://github.com/tensorflow/tfjs-models)
 - [Hugging Face](https://huggingface.co/models)
+
+## Örnek
+
+### Typescript (Vite)
+
+- [Proje 1](https://github.com/emrecancorapci/fem-ml-workshop-ts/tree/main/exercises/project-1)
+  - [Resimden Nesne Tanıma (COCO-SSD)](https://github.com/emrecancorapci/fem-ml-workshop-ts/blob/main/exercises/project-1/src/part1.ts)
+  - [Kamera ile Nesne Tanıma (COCO-SSD)](https://github.com/emrecancorapci/fem-ml-workshop-ts/blob/main/exercises/project-1/src/part2.ts)
+  - [Kamera ile Yüz Tanıma (MediaPipe FaceDetection)](https://github.com/emrecancorapci/fem-ml-workshop-ts/blob/main/exercises/project-1/src/part3.ts)
+
+### Javascript (Parcel)
+
+- [Proje 1](https://github.com/charliegerard/fem-ml-workshop/tree/main/solutions/project-1)
+  - [Resimden Nesne Tanıma (COCO-SSD)](https://github.com/charliegerard/fem-ml-workshop/blob/main/solutions/project-1/part1.js)
+  - [Kamera ile Nesne Tanıma (COCO-SSD)](https://github.com/charliegerard/fem-ml-workshop/blob/main/solutions/project-1/part2.js)
+  - [Kamera ile Yüz Tanıma (MediaPipe FaceDetection)](https://github.com/charliegerard/fem-ml-workshop/blob/main/solutions/project-1/part3.js)
